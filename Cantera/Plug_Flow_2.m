@@ -1,4 +1,4 @@
-function output = Plug_Flow(gas_calc, species_name)
+function output = Plug_Flow_2(gas_calc, species_name)
     % Simulation of a plug flow for the BNHCL system. Currently for 
     % gas-phase reactions only. 
    
