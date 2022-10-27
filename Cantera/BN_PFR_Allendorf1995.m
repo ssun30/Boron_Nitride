@@ -18,6 +18,8 @@ c1 = 2.390e-7; % J/kmol to kcal/mol
 
 g = Solution('BNHCL-Allendorf1995.yaml', 'gas');
 
+g.TP = {298.15, oneatm};
+
 % Print all the reactions and their dH
 
 for i = 1:g.nReactions
@@ -45,10 +47,10 @@ for i = 1:length(T_array1)
     fprintf('Solving for temperature = %d\n', T_array1(i));
     g.TPX = {T_array1(i), P0, X0};
     output = Plug_Flow(g, {'BCL3', 'BCL2', 'BCL', 'HCL'}, 1.0);
-    X_BCL3 = [X_BCL3, output(2, end)];
-    X_BCL2 = [X_BCL2, output(3, end)];
-    X_BCL = [X_BCL, output(4, end)];
-    X_HCL = [X_HCL, output(5, end)];
+    X_BCL3 = [X_BCL3, output(3, end)];
+    X_BCL2 = [X_BCL2, output(4, end)];
+    X_BCL = [X_BCL, output(5, end)];
+    X_HCL = [X_HCL, output(6, end)];
 end
 
 T_array2 = linspace(800, 2000, 25);
@@ -61,9 +63,9 @@ for i = 1:length(T_array2)
     fprintf('Solving for temperature = %d\n', T_array2(i));
     g.TPX = {T_array2(i), P0, X0};
     output = Plug_Flow(g, {'NH3', 'N2', 'H2'}, 1.0);
-    X_NH3 = [X_NH3, output(2, end)];
-    X_N2 = [X_N2, output(3, end)];
-    X_H2 = [X_H2, output(4, end)];
+    X_NH3 = [X_NH3, output(3, end)];
+    X_N2 = [X_N2, output(4, end)];
+    X_H2 = [X_H2, output(5, end)];
 end
 
 disp(['CPU time = ' num2str(cputime - t0)]);
@@ -107,14 +109,15 @@ for i = 1:length(T_array3)
     g.TPX = {T_array3(i), P0, X0};
     output = Plug_Flow(g, speciesList, 0.3);
     tim = output(1, 1:end);
-    XX_BCL3 = output(2, 1:end);
-    XX_NH3 = output(3, 1:end);
-    XX_ADCB = output(4, 1:end);
-    XX_DACB = output(5, 1:end);
-    XX_TAB = output(6, 1:end);
-    XX_ClBNH = output(7, 1:end);
-    XX_HCL = output(8, 1:end);
+    XX_BCL3 = output(3, 1:end);
+    XX_NH3 = output(4, 1:end);
+    XX_ADCB = output(5, 1:end);
+    XX_DACB = output(6, 1:end);
+    XX_TAB = output(7, 1:end);
+    XX_ClBNH = output(8, 1:end);
+    XX_HCL = output(9, 1:end);
     subplot(1, length(T_array3), i)
+    title(sprintf('Temperature = %d K', T_array3(i)))
     hold on
     plot(tim, XX_BCL3, 'k');
     plot(tim, XX_NH3, '--k');

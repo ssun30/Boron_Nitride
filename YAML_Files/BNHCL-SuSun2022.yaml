@@ -1,0 +1,152 @@
+description: |-
+  Trough mechanism from 'S. J. Harris and D. G. Goodwin, 'Growth on
+  the reconstructed diamond (100) surface, 'J. Phys. Chem. vol. 97,
+  23-28 (1993). reactions a - t are taken directly from Table II,
+  with thermochemistry from Table IV. Reaction u is added here.
+
+units: {length: cm, quantity: mol, activation-energy: kcal/mol}
+
+phases:
+- name: gas
+  thermo: ideal-gas
+  elements: [H, B, N, Cl]
+  species: 
+    - species: [Cl3BNH3, Cl2BNH2, ClBNH, BCl(NH2)2, B(NH2)3, NNH]
+    - nasa_gas.yaml/species: [NH3, N2H2, NH2, NH, N2, N, H2, H, BCL3, BCL2, BCL, HCL, CL]
+  kinetics: gas
+  reactions: all
+  state:
+    T: 1073.0
+    P: 133.0
+    X: {H2: 10, NH3: 1.5, BCl3: 1.0}
+# - name: Substrate
+#   thermo: fixed-stoichiometry
+#   elements: [Si]
+#   species: 
+#     - silicon.yaml/species: [Si(cr)]
+#   state:
+#     T: 1073.0
+#     P: 133.0
+#     X: {Si: 1.0}
+# - name: Si_substrate
+#   thermo: ideal-surface
+#   adjacent-phases: [gas, BN]
+#   elements: [H, C]
+#   species: [c6HH, c6H*, c6*H, c6**, c6HM, c6HM*, c6*M, c6B]
+#   kinetics: surface
+#   reactions: all
+#   state:
+#     T: 1073.0
+#     coverages: {c6H*: 0.1, c6HH: 0.9}
+#   site-density: 3.0e-09 mol/cm^2
+
+species:
+- name: Cl3BNH3
+  composition: {H: 3, B: 1, N: 1, Cl: 3}
+  thermo:
+    model: constant-cp
+    h0: -133.0 kcal/mol
+    s0: 79.63 cal/mol/K
+- name: Cl2BNH2
+  composition: {H: 2, B: 1, N: 1, Cl: 2}
+  thermo:
+    model: constant-cp
+    h0: -99.3 kcal/mol
+    s0: 70.61 cal/mol/K
+- name: ClBNH
+  composition: {H: 1, B: 1, N: 1, Cl: 1}
+  thermo:
+    model: constant-cp
+    h0: -18.9 kcal/mol
+    s0: 58.34 cal/mol/K
+- name: BCl(NH2)2
+  composition: {H: 4, B: 1, N: 2, Cl: 1}
+  thermo:
+    model: constant-cp
+    h0: -91.3 kcal/mol
+    s0: 72.72 cal/mol/K
+- name: B(NH2)3
+  composition: {H: 6, B: 1, N: 3}
+  thermo:
+    model: constant-cp
+    h0: -74.6 kcal/mol
+    s0: 77.49 cal/mol/K
+- name: NNH # From RMG databse NOx2018
+  composition: {H: 1, N: 2}
+  thermo: 
+    model: NASA7
+    temperature-ranges: [200.0, 1000.0, 6000.0]
+    data:
+    - [4.25475, -3.45098e-03, 1.37789e-05, -1.33264e-08, 4.41023e-12,
+      2.88324e+04, 3.28552]
+    - [3.42744, 3.23295e-03, -1.17296e-06, 1.90508e-10, -1.14492e-14,
+      2.88068e+04, 6.39209]
+reactions:
+# B-N-H-Cl reactions from Allendorf et al. 1995.
+- equation: Cl3BNH3 <=> BCL3 + NH3  # Reaction 1
+  rate-constant: {A: 1.3e+14, b: 0.0, Ea: 7.3}
+- equation: Cl3BNH3 <=> Cl2BNH2 + HCL  # Reaction 2
+  rate-constant: {A: 1.0e+13, b: 0.0, Ea: 38.0}
+- equation: BCL3 + NH3 <=> Cl2BNH2 + HCL  # Reaction 3, with kinetic parameters modified in Allendorf 1998
+  rate-constant: {A: 4.21e+11, b: 0.0, Ea: 8.35}
+- equation: Cl2BNH2 <=> ClBNH + HCL  # Reaction 4
+  rate-constant: {A: 3.89e+14, b: 0.0, Ea: 79.0}
+- equation: Cl2BNH2 + NH3 <=> BCl(NH2)2 + HCL  # Reaction 5, with kinetics parameters modified in Allendorf 1998
+  rate-constant: {A: 3.88e+11, b: 0.0, Ea: 18.5}
+- equation: BCl(NH2)2 + NH3 <=> B(NH2)3 + HCL  # Reaction 6
+  rate-constant: {A: 1.66e+12, b: 2.0, Ea: 19.9}
+- equation: BCL3 <=> BCL2 + CL  # Reaction 7
+  rate-constant: {A: 9.86e+15, b: 0.0, Ea: 113.7}
+- equation: BCL2 <=> BCL + CL  # Reaction 8
+  rate-constant: {A: 2.25e+15, b: 0.0, Ea: 76.9}
+- equation: BCL3 + H <=> BCL2 + HCL  # Reaction 9
+  rate-constant: {A: 1.00e+14, b: 0.0, Ea: 12.0}
+- equation: BCL + HCL <=> BCL2 + H  # Reaction 10
+  rate-constant: {A: 7.23e+13, b: 0.0, Ea: 24.2}
+- equation: NH3 + M <=> NH2 + H + M  # Reaction 11
+  type: three-body
+  rate-constant: {A: 2.50e+16, b: 0.0, Ea: 93.8}
+# N-H gas-phase reactions from Miller and Bowman 1989. 
+- equation: NH + N <=> N2 + H  # Reaction 11
+  rate-constant: {A: 3.00e+13, b: 0.0, Ea: 0.0}
+- equation: NH + H <=> N + H2  # Reaction 12
+  rate-constant: {A: 1.00e+14, b: 0.0, Ea: 0.0}
+- equation: NH2 + H <=> NH + H2  # Reaction 13
+  rate-constant: {A: 6.92e+13, b: 0.0, Ea: 3.65}
+- equation: NH3 + H <=> NH2 + H2  # Reaction 14
+  rate-constant: {A: 6.36e+5, b: 2.39, Ea: 10.171}
+- equation: NH2 + NH <=> N2H2 + H  # Reaction 15
+  rate-constant: {A: 5.00e+13, b: 0.0, Ea: 0.0}
+- equation: NH2 + N <=> N2 + 2 H  # Reaction 16
+  rate-constant: {A: 7.20e+13, b: 0.0, Ea: 0.0}
+- equation: 2 NH <=> N2 + 2 H  # Reaction 17
+  rate-constant: {A: 2.54e+13, b: 0.0, Ea: 0.0}
+- equation: 2 NH2 <=> N2H2 + H2  # Reaction 18
+  rate-constant: {A: 5.00e+11, b: 0.0, Ea: 0.0}
+- equation: NNH <=> N2 + H  # Reaction 20
+  rate-constant: {A: 1.00e+4, b: 0.0, Ea: 0.0}
+- equation: NNH + H <=> N2 + H2  # Reaction 21
+  rate-constant: {A: 1.00e+14, b: 0.0, Ea: 0.0}
+- equation: NNH + NH2 <=> N2 + NH3  # Reaction 22
+  rate-constant: {A: 5.00e+13, b: 0.0, Ea: 0.0}
+- equation: NNH + NH <=> N2 + NH2  # Reaction 23
+  rate-constant: {A: 5.00e+13, b: 0.0, Ea: 0.0}
+- equation: N2H2 + M <=> NNH + H + M  # Reaction 24
+  type: three-body
+  rate-constant: {A: 5.00e+16, b: 0.0, Ea: 50.0}
+  efficiencies: {N2: 2.0, H2: 2.0}
+- equation: N2H2 + H <=> NNH + H2  # Reaction 25
+  rate-constant: {A: 5.00e+13, b: 0.0, Ea: 1.0}
+- equation: N2H2 + NH <=> NNH + NH2  # Reaction 26
+  rate-constant: {A: 1.00e+13, b: 0.0, Ea: 1.0}
+- equation: N2H2 + NH2 <=> NNH + NH3  # Reaction 27
+  rate-constant: {A: 1.00e+13, b: 0.0, Ea: 1.0} 
+# H-only reactions. From Miller and Bowman 1989. 
+- equation: 2 H + M <=> H2 + M  # Reaction 28
+  type: three-body
+  rate-constant: {A: 1.00e+18, b: -1.0, Ea: 0.0}
+  efficiencies: {H2: 0.0}
+  duplicate: true
+- equation: 2 H + H2 <=> 2 H2  # Reaction 29
+  rate-constant: {A: 9.20e+16, b: -0.6, Ea: 0.0}
+  duplicate: true
