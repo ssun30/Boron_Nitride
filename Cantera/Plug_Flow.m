@@ -1,5 +1,5 @@
 function output = Plug_Flow(gas_calc, species_name, total_time)
-    % Simulation of a plug flow for the BNHCL system.
+    % Simulation of a single plug flow for the BNHCL system.
     % Currently for gas-phase reactions only.
     %
     % :param gas_calc:
@@ -9,7 +9,7 @@ function output = Plug_Flow(gas_calc, species_name, total_time)
     % :param total_time:
     %    Total amount of time for simulation. 
     % :return:
-    %    Mole fraction of species at the end of 1 second. 
+    %    Mole fraction of species at the end of simulation time. 
    
     % create a reactor, and insert the gas
     r = IdealGasReactor(gas_calc);

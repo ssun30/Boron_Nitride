@@ -1,6 +1,6 @@
-%% BN_PFR_Allendorf1995 - A Gas Phase Reaction Simulation of the B-N-H-Cl system.
+%% BN_PFR_Allendorf1995_2 - A Gas Phase Reaction Simulation of the B-N-H-Cl system.
 % 
-% A plug-flow simulation of the B-N-H-Cl system using gas-phase mechanism
+% A full plug-flow reactor simulation of the B-N-H-Cl system using gas-phase mechanism
 % data from M. Allendorf et al. 1995 and Thermochemistry data from M. Allendorf
 % et al. 1997. The first part prints out standard enthalpy of reaction for 
 % all reactions in the kinetics model. The second part creates concentration vs. 
@@ -11,7 +11,7 @@
 % Requires: cantera >= 2.6.0
 % Keywords: kinetics, thermochemistry, boron nitride. 
 
-help BN_PFR_Allendorf1995
+help BN_PFR_Allendorf1995_2
 LoadCantera;
 clear all
 close all
@@ -55,7 +55,7 @@ X_H2 = [];
 for i = 1:length(T_array1)
     fprintf('Solving for temperature = %d\n', T_array1(i));
     g.TPX = {T_array1(i), P0, X0};
-    output = Plug_Flow(g, {'BCL3', 'BCL2', 'BCL', 'HCL'}, 1.0);
+    output = Plug_Flow_Reactor(g, {'BCL3', 'BCL2', 'BCL', 'HCL'}, 1.0);
     X_BCL3 = [X_BCL3, output(3, end)];
     X_BCL2 = [X_BCL2, output(4, end)];
     X_BCL = [X_BCL, output(5, end)];
@@ -71,7 +71,7 @@ X_NH3 = [];
 for i = 1:length(T_array2)
     fprintf('Solving for temperature = %d\n', T_array2(i));
     g.TPX = {T_array2(i), P0, X0};
-    output = Plug_Flow(g, {'NH3', 'N2', 'H2'}, 1.0);
+    output = Plug_Flow_Reactor(g, {'NH3', 'N2', 'H2'}, 1.0);
     X_NH3 = [X_NH3, output(3, end)];
     X_N2 = [X_N2, output(4, end)];
     X_H2 = [X_H2, output(5, end)];
@@ -116,7 +116,7 @@ figure(2)
 for i = 1:length(T_array3)
     fprintf('Solving for temperature = %d\n', T_array3(i));
     g.TPX = {T_array3(i), P0, X0};
-    output = Plug_Flow(g, speciesList, 0.3);
+    output = Plug_Flow_Reactor(g, speciesList, 0.3);
     tim = output(1, 1:end);
     XX_BCL3 = output(3, 1:end);
     XX_NH3 = output(4, 1:end);

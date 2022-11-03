@@ -1,8 +1,9 @@
 description: |-
-  Trough mechanism from 'S. J. Harris and D. G. Goodwin, 'Growth on
-  the reconstructed diamond (100) surface, 'J. Phys. Chem. vol. 97,
-  23-28 (1993). reactions a - t are taken directly from Table II,
-  with thermochemistry from Table IV. Reaction u is added here.
+  B-N-H-Cl reaction mechanism taken from M. Allendorf et al. 1995, 
+  N-H only reaction mechanism taken from J.A. Miller and C.T. Bowman 1989.
+  Thermochemistry data taken from M. Allendorf et al. 1997 and NASA 7-coefficient 
+  polynomial databse. 
+  This file uses constant-cp model for selected species from Allendorf 1997. 
 
 units: {length: cm, quantity: mol, activation-energy: kcal/mol}
 
