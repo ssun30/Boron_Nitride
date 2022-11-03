@@ -13,7 +13,7 @@ phases:
   elements: [H, B, N, Cl]
   species: 
     - species: [Cl3BNH3, Cl2BNH2, ClBNH, ClB(NH2)2, B(NH2)3, NNH]
-    - nasa_gas.yaml/species: [NH3, N2H2, NH2, NH, N2, N, H2, H, BCL3, BCL2, BCL, HCL, CL]
+    - nasa_gas.yaml/species: [NH3, N2H2, NH2, NH, N2, N, H2, H, BCL3, BCL2, BCL, HCL, CL, He]
   kinetics: gas
   reactions: all
   state:

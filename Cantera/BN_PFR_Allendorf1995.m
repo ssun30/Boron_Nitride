@@ -75,6 +75,8 @@ for i = 1:length(T_array2)
     X_NH3 = [X_NH3, output(3, end)];
     X_N2 = [X_N2, output(4, end)];
     X_H2 = [X_H2, output(5, end)];
+    HH = g.enthalpies_RT.*1.9872.*g.T;
+    fprintf('Enthalpy of NH3 is %d\n', HH(g.speciesIndex('NH3')));
 end
 
 disp(['CPU time = ' num2str(cputime - t0)]);

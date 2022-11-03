@@ -1,4 +1,4 @@
-function output = Plug_Flow_Reactor(gas_calc, species_name, residence_time)
+function output = Plug_Flow_Reactor(gas_calc, species_name, residence_time, dx)
     % Simulation of an ideal plug flow reactor for the BNHCL system.
     % Currently for gas-phase reactions only.
     %
@@ -7,22 +7,23 @@ function output = Plug_Flow_Reactor(gas_calc, species_name, residence_time)
     % :param species_name:
     %    String or array of string of species names.
     % :param residence_time:
-    %    Residence time of the PFR. 
+    %    Residence time of the PFR.
+    % :param dx:
+    %    Length of each slice of the PFR. 
     % :return:
     %    Mole fraction of species at the exist of the PFR. 
 
-    %% Initial Setup
+    %% Initial Setup. Reactor parameters are taken from Allendorf 1998. 
 
     % Inlet Area, in m^2
-    A_in = 0.01;
-    % The whole reactor is divided into n small reactors
-    n = 100;
+    A_in = 0.064 * 0.064 * pi / 4;
+    % Volumetric flow rate into the reactor, in m^3
+    VFR = 2000e-6; % 2000 sccm
     % Mass flow velocity into the reactor, in m/s
-    v = 1.0;
+    v = VFR / A_in;
     % Mass flow rate into the reactor, in kg/s.
     mdot_calc = A_in * v * gas_calc.D;
-    % The whole length of the reactor is divided into 1 mm slices
-    dx = 0.001;
+    % Create a vector of all the PFR slices. 
     x_calc = [0, dx];
 
     nsp = gas_calc.nSpecies;
