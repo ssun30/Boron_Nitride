@@ -31,6 +31,7 @@ function output = Plug_Flow(gas_calc, species_name, total_time)
       tim(n) = network.time;
       temp(n) = gas_calc.T;
       xx(1:end, n) = gas_calc.moleFraction(species_name);
+      % fprintf('Reactor volume is %d\n', gas_calc.V);
     end
 
     output(1, 1:end) = tim(1:end);

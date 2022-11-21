@@ -1,0 +1,369 @@
+description: |-
+  Trough mechanism from 'S. J. Harris and D. G. Goodwin, 'Growth on
+  the reconstructed diamond (100) surface, 'J. Phys. Chem. vol. 97,
+  23-28 (1993). reactions a - t are taken directly from Table II,
+  with thermochemistry from Table IV. Reaction u is added here.
+
+units: {length: cm, quantity: mol, activation-energy: kcal/mol}
+
+phases:
+- name: gas
+  thermo: ideal-gas
+  elements: [H, B, N, Cl]
+  species: 
+    - species: [BH3, BH2, BH, BCl3, BHCl2, BH2Cl, BCl2, HBCl, BCl, 
+                H3BNH3, H2BNH2, H2BNH, HBNH2, B(NH2)2, HBNH, BNH2, H2BN, 
+                BNH, BN, B3N3H6, Cl3BNH3, H3NBCl2NH2, HClBNH2,
+                Cl2BNH2, ClB(NH2)2, HB(NH2)2, B(NH2)3, Cl2BNH, ClBNH2, ClBNH, 
+                Cl2BN, BNCl2, ClBN, NNH]
+    - nasa_gas.yaml/species: [NH3, N2H2, NH2, NH, N2, N, H2, H, HCL, CL]
+  kinetics: gas
+  reactions: all
+  state:
+    T: 1073.0
+    P: 133.0
+    X: {H2: 10, NH3: 1.5, BCl3: 1.0}
+
+species:
+# From Allendorf 1997
+- name: BH3
+  composition: {H: 3, B: 1}
+  thermo: 
+    model: NASA7
+    temperature-ranges: [300.0, 1000.0, 3000.0]
+    data:
+    - [0.32535003E+01, 0.17414763E-02, 0.94006960E-05, -0.98644881E-08, 0.30205618E-11, 0.10137202E+05, 0.32586092E+01]
+    - [0.14650198E+01, 0.10215915E-01, -0.53335935E-05, 0.13346981E-08, -0.13029262E-12, 0.10430268E+05, 0.11560353E+02]
+- name: BH2
+  composition: {H: 2, B: 1}
+  thermo: 
+    model: NASA7
+    temperature-ranges: [300.0, 1000.0, 3000.0]
+    data:
+    - [0.37263717E+01, 0.11128168E-02, 0.17957147E-05, -0.10825122E-08, 0.43055770E-13, 0.36846964E+05, 0.17299717E+01]
+    - [0.25107703E+01, 0.50119927E-02, -0.24525447E-05, 0.57888467E-09, -0.53656168E-13, 0.37133057E+05, 0.78223818E+01]
+- name: BH
+  composition: {H: 1, B: 1}
+  thermo: 
+    model: NASA7
+    temperature-ranges: [300.0, 1000.0, 3000.0]
+    data:
+    - [0.37967940E+01, -0.21493190E-02, 0.48271230E-05, -0.32633751E-08, 0.73754692E-12, 0.50456201E+05, -0.53188944E+00]
+    - [0.26605388E+01, 0.21187148E-02, -0.10617224E-05, 0.25523516E-09, -0.23996510E-13, 0.50694044E+05, 0.50109881E+01]
+- name: BCl3
+  composition: {B: 1, Cl: 3}
+  thermo: 
+    model: NASA7
+    temperature-ranges: [300.0, 1000.0, 3000.0]
+    data:
+    - [0.30803194E+01, 0.24319377E-01, -0.37301543E-04, 0.27382117E-07, -0.78218403E-11, -0.50379630E+05, 0.11589219E+02]
+    - [0.82753631E+01, 0.25203824E-02, -0.15105616E-05, 0.41696296E-09, -0.43717163E-13, -0.51419840E+05, -0.13349514E+02]
+- name: BHCl2
+  composition: {H: 1, B: 1, Cl: 2}
+  thermo: 
+    model: NASA7
+    temperature-ranges: [300.0, 1000.0, 3000.0]
+    data:
+    - [0.15225976E+01, 0.23001496E-01, -0.31678476E-04, 0.22320200E-07, -0.62807939E-11, -0.31729790E+05, 0.18015816E+02]
+    - [0.57512200E+01, 0.53986233E-02, -0.29548428E-05, 0.76706066E-09, -0.77037808E-13, -0.32583987E+05, -0.23199763E+01]
+- name: BH2Cl
+  composition: {H: 2, B: 1, Cl: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [300.0, 1000.0, 3000.0]
+    data:
+    - [0.15680049E+01, 0.15354933E-01, -0.15741459E-04, 0.95308826E-08, -0.25380343E-11, -0.11241591E+05, 0.15338649E+02]
+    - [0.34456712E+01, 0.80121746E-02, -0.42576400E-05, 0.10808557E-08, -0.10673403E-12, -0.11649571E+05, 0.61778901E+01]
+- name: BCl2
+  composition: {B: 1, Cl: 2}
+  thermo:
+    model: NASA7
+    temperature-ranges: [300.0, 1000.0, 3000.0]
+    data:
+    - [0.28747005E+01, 0.14082895E-01, -0.21042366E-04, 0.15116765E-07, -0.42462241E-11, -0.51143865E+04, 0.12824085E+02]
+    - [0.59044924E+01, 0.16118626E-02, -0.97185633E-06, 0.26967602E-09, -0.28404116E-13, -0.57306237E+04, -0.17746236E+01]
+- name: HBCl
+  composition: {H: 1, B: 1, Cl: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [300.0, 1000.0, 3000.0]
+    data:
+    - [0.25206723E+01, 0.10250390E-01, -0.13488863E-04, 0.96905711E-08, -0.28210939E-11, 0.15110857E+05, 0.11982520E+02]
+    - [0.40140440E+01, 0.35951909E-02, -0.18835927E-05, 0.47214009E-09, -0.46106141E-13, 0.14826272E+05, 0.48983014E+01]
+- name: BCl
+  composition: {B: 1, Cl: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [300.0, 1000.0, 3000.0]
+    data:
+    - [0.26499292E+01, 0.63301060E-02, -0.94302405E-05, 0.67394087E-08, -0.18821550E-11, 0.20996015E+05, 0.90569461E+01]
+    - [0.40189145E+01, 0.71156845E-03, -0.43061708E-06, 0.11983297E-09, -0.12650592E-13, 0.20717417E+05, 0.24582053E+01]
+- name: H3BNH3
+  composition: {H: 6, B: 1, N: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [300.0, 1000.0, 3000.0]
+    data:
+    - [0.19486989E+01, 0.20093319E-01, -0.50634675E-05, -0.33493641E-08, 0.17462886E-11, -0.11417782E+05, 0.12764981E+02]
+    - [0.22071150E+01, 0.21525925E-01, 0.10696339E-04, 0.25848974E-08, -0.24612315E-12, -0.11599960E+05, 0.10883752E+02]
+- name: H2BNH2
+  composition: {H: 4, B: 1, N: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [300.0, 1000.0, 3000.0]
+    data:
+    - [0.41936332E+00, 0.23120948E-01, -0.18491259E-04, 0.84716927E-08, -0.16998117E-11, -0.12695021E+05, 0.19007699E+02]
+    - [0.30438396E+01, 0.14103071E-01, -0.67818204E-05, 0.16085416E-08, -0.15269824E-12, -0.13307340E+05, 0.59425555E+01]
+- name: H2BNH
+  composition: {H: 3, B: 1, N: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [300.0, 1000.0, 3000.0]
+    data:
+    - [0.24812213E+01, 0.15474766E-01, -0.14128864E-04, 0.79911700E-08, -0.20319425E-11, 0.21132870E+05, 0.12750733E+02]
+    - [0.39564653E+01, 0.95166114E-02, -0.47139857E-05, 0.11349029E-08, -0.10764237E-12, 0.20827617E+05, 0.56151721E+01]
+- name: HBNH2
+  composition: {H: 3, B: 1, N: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [300.0, 1000.0, 3000.0]
+    data:
+    - [0.12969619E+01, 0.18873270E-01, -0.18102730E-04, 0.10181584E-07, -0.24043388E-11, 0.14586513E+05, 0.16144349E+02]
+    - [0.34942392E+01, 0.98631960E-02, -0.43446503E-05, 0.90653661E-09, -0.74574453E-13, 0.14161055E+05, 0.56063699E+01]
+- name: B(NH2)2
+  composition: {H: 4, B: 1, N: 2}
+  thermo:
+    model: NASA7
+    temperature-ranges: [300.0, 1000.0, 3000.0]
+    data:
+    - [0.23853503E+01, 0.28621000E-01, -0.30284743E-04, 0.18423211E-07, -0.46834331E-11, -0.11458350E+03, 0.11584189E+02]
+    - [0.62477507E+01, 0.12884149E-01, -0.58229691E-05, 0.12606148E-08, -0.10815990E-12, -0.88688858E+03, -0.70133168E+01]
+- name: HBNH
+  composition: {H: 2, B: 1, N: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [300.0, 1000.0, 3000.0]
+    data:
+    - [0.23193329E+01, 0.15323100E-01, -0.21011123E-04, 0.16044587E-07, -0.48276744E-11, 0.42950620E+04, 0.39657952E+01]
+    - [0.42145555E+01, 0.55614479E-02, -0.23877281E-05, 0.50186293E-09, -0.41915774E-13, 0.40013964E+04, -0.46915153E+01]
+- name: BNH2
+  composition: {H: 2, B: 1, N: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [300.0, 1000.0, 3000.0]
+    data:
+    - [0.30264833E+01, 0.10551614E-01, -0.10757413E-04, 0.65359666E-08, -0.16255074E-11, 0.23294943E+05, 0.67984399E+01]
+    - [0.41846862E+01, 0.53132431E-02, -0.21639674E-05, 0.43137685E-09, -0.34195004E-13, 0.23099328E+05, 0.13765407E+01]
+- name: H2BN
+  composition: {H: 2, B: 1, N: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [300.0, 1000.0, 3000.0]
+    data:
+    - [0.16880774E+01, 0.13942306E-01, -0.12349144E-04, 0.64602304E-08, -0.15665199E-11, 0.50777755E+05, 0.14530334E+02]
+    - [0.32827991E+01, 0.83489442E-02, -0.44948262E-05, 0.11527939E-08, -0.11476111E-12, 0.50398116E+05, 0.65867961E+01]
+- name: BNH
+  composition: {H: 1, B: 1, N: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [300.0, 1000.0, 3000.0]
+    data:
+    - [0.29255150E+01, 0.89665322E-02, -0.12284371E-04, 0.93288082E-08, -0.27872964E-11, 0.34063491E+05, 0.63616789E+01]
+    - [0.41529691E+01, 0.29418661E-02, -0.11461845E-05, 0.21661728E-09, -0.16079884E-13, 0.33859445E+05, 0.68289197E+00]
+- name: BN
+  composition: {B: 1, N: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [300.0, 1000.0, 3000.0]
+    data:
+    - [0.37776064E+01, -0.27279471E-02, 0.82596218E-05, -0.74915752E-08, 0.23074239E-11, 0.69545746E+05, 0.26545159E+01]
+    - [0.29023763E+01, 0.21631386E-02, -0.12385196E-05, 0.33237094E-09, -0.34236397E-13, 0.69653826E+05, 0.65358093E+01]
+- name: B3N3H6
+  composition: {H: 6, B: 3, N: 3}
+  thermo:
+    model: NASA7
+    temperature-ranges: [300.0, 1000.0, 3000.0]
+    data:
+    - [-0.59944330E+01, 0.82459624E-01, -0.88959868E-04, 0.51292394E-07, -0.12333185E-10, -0.62578083E+05, 0.48139645E+02]
+    - [0.81091459E+01, 0.30955806E-01, -0.16341882E-04, 0.41535622E-08, -0.41209942E-12, -0.65735258E+05, -0.21356929E+02]
+- name: Cl3BNH3
+  composition: {H: 3, B: 1, N: 1, Cl: 3}
+  thermo:
+    model: NASA7
+    temperature-ranges: [300.0, 1000.0, 3000.0]
+    data:
+    - [0.33004107E+01, 0.43921800E-01, -0.61316269E-04, 0.44561820E-07, -0.12760718E-10, -0.69387983E+05, 0.10652892E+02]
+    - [0.10672418E+02, 0.11079021E-01, -0.50888600E-05, 0.11473083E-08, -0.10284438E-12, -0.70759017E+05, -0.24235022E+02]
+- name: H3NBCl2NH2
+  composition: {H: 5, B: 1, N: 2, Cl: 2}
+  thermo:
+    model: NASA7
+    temperature-ranges: [300.0, 1000.0, 3000.0]
+    data:
+    - [0.43319819E+01, 0.43504102E-01, -0.53588016E-04, 0.36948205E-07, -0.10279360E-10, -0.62688254E+05, 0.70622761E+01]
+    - [0.10430558E+02, 0.16185565E-01, -0.70991712E-05, 0.15318220E-08, -0.13186112E-12, -0.63799247E+05, -0.21722493E+02]
+- name: HClBNH2
+  composition: {H: 3, B: 1, N: 1, Cl: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [300.0, 1000.0, 3000.0]
+    data:
+    - [0.44186831E+00, 0.32025491E-01, -0.38260171E-04, 0.24991354E-07, -0.66704942E-11, -0.32980931E+05, 0.21838898E+02]
+    - [0.54814084E+01, 0.11357911E-01, -0.54962072E-05, 0.13080063E-08, -0.12307055E-12, -0.33996650E+05, -0.24298198E+01]
+- name: Cl2BNH2
+  composition: {H: 2, B: 1, N: 1, Cl: 2}
+  thermo:
+    model: NASA7
+    temperature-ranges: [300.0, 1000.0, 3000.0]
+    data:
+    - [0.16111386E+01, 0.36173832E-01, -0.49919403E-04, 0.35397672E-07, -0.98978999E-11, -0.51690058E+05, 0.17464603E+02]
+    - [0.83411997E+01, 0.76665966E-02, -0.32517436E-05, 0.66381355E-09, -0.54527459E-13, -0.53007598E+05, -0.14734497E+02]
+- name: ClB(NH2)2
+  composition: {H: 4, B: 1, N: 2, Cl: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [300.0, 1000.0, 3000.0]
+    data:
+    - [0.19105125E+01, 0.41847052E-01, -0.51964008E-04, 0.35646261E-07, -0.10056248E-10, -0.47998560E+05, 0.15203049E+02]
+    - [0.80587679E+01, 0.15654719E-01, -0.81648086E-05, 0.20318401E-08, -0.19694852E-12, -0.49218637E+05, -0.14234880E+02]
+- name: HB(NH2)2
+  composition: {H: 5, B: 1, N: 2}
+  thermo:
+    model: NASA7
+    temperature-ranges: [300.0, 1000.0, 3000.0]
+    data:
+    - [0.70745868E+00, 0.37546266E-01, -0.40400690E-04, 0.25177066E-07, -0.65373221E-11, -0.27993309E+05, 0.18272199E+02]
+    - [0.53313244E+01, 0.17685809E-01, -0.81717344E-05, 0.18050633E-08, -0.15768405E-12, -0.28862858E+05, -0.37265961E+01]
+- name: B(NH2)3
+  composition: {H: 6, B: 1, N: 3}
+  thermo:
+    model: NASA7
+    temperature-ranges: [300.0, 1000.0, 3000.0]
+    data:
+    - [0.36530985E+01, 0.41482257E-01, -0.46943381E-04, 0.30913755E-07, -0.83890618E-11, -0.40098577E+05, 0.78506603E+01]
+    - [0.84127036E+01, 0.19469817E-01, -0.89816447E-05, 0.19891808E-08, -0.17338987E-12, -0.40917865E+05, -0.14408349E+02]
+- name: Cl2BNH
+  composition: {H: 1, B: 1, N: 1, Cl: 2}
+  thermo:
+    model: NASA7
+    temperature-ranges: [300.0, 1000.0, 3000.0]
+    data:
+    - [0.31037539E+01, 0.25930864E-01, -0.38729895E-04, 0.28489750E-07, -0.81415790E-11, -0.14727305E+05, 0.12838216E+02]
+    - [0.81855453E+01, 0.38988504E-02, -0.18073858E-05, 0.41360457E-09, -0.37721658E-13, -0.15702328E+05, -0.11362047E+0]
+- name: ClBNH2
+  composition: {H: 2, B: 1, N: 1, Cl: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [300.0, 1000.0, 3000.0]
+    data:
+    - [0.18171184E+01, 0.24164438E-01, -0.30408483E-04, 0.20427987E-07, -0.54712704E-11, -0.54546202E+04, 0.16395343E+02]
+    - [0.59002683E+01, 0.69705810E-02, -0.28384537E-05, 0.53689880E-09, -0.39504979E-13, -0.62444325E+04, -0.31287938E+01]
+- name: ClBNH
+  composition: {H: 1, B: 1, N: 1, Cl: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [300.0, 1000.0, 3000.0]
+    data:
+    - [0.25918568E+01, 0.22736363E-01, -0.36393493E-04, 0.28764736E-07, -0.87021588E-11, -0.11046941E+05, 0.91986346E+01]
+    - [0.65995152E+01, 0.36131559E-02, -0.14917860E-05, 0.30031014E-09, -0.23890943E-13, -0.11746446E+05, -0.94943598E+01]
+- name: Cl2BN
+  composition: {B: 1, N: 1, Cl: 2}
+  thermo:
+    model: NASA7
+    temperature-ranges: [300.0, 1000.0, 3000.0]
+    data:
+    - [0.29048020E+01, 0.23454774E-01, -0.34454677E-04, 0.24568659E-07, -0.68890384E-11, 0.10189709E+05, 0.13703212E+02]
+    - [0.79110437E+01, 0.30520990E-02, -0.18323017E-05, 0.50696803E-09, -0.53289094E-13, 0.91589533E+04, -0.10475566E+02]
+- name: BNCl2
+  composition: {B: 1, N: 1, Cl: 2}
+  thermo:
+    model: NASA7
+    temperature-ranges: [300.0, 1000.0, 3000.0]
+    data:
+    - [0.40543637E+01, 0.18339636E-01, -0.25543760E-04, 0.17534109E-07, -0.47936684E-11, 0.51367811E+05, 0.80291847E+01]
+    - [0.79558725E+01, 0.29812492E-02, -0.17900249E-05, 0.49576603E-09, -0.52181544E-13, 0.50538872E+05, -0.10945888E+02]
+- name: ClBN
+  composition: {B: 1, N: 1, Cl: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [300.0, 1000.0, 3000.0]
+    data:
+    - [0.34053685E+01, 0.10908439E-01, -0.14706586E-04, 0.10453817E-07, -0.30356048E-11, 0.28633091E+05, 0.73054184E+01]
+    - [0.54106426E+01, 0.28670155E-02, -0.16494607E-05, 0.44274233E-09, -0.45505023E-13, 0.28200903E+05, -0.24441627E+01]
+- name: NNH # From RMG databse NOx2018
+  composition: {H: 1, N: 2}
+  thermo: 
+    model: NASA7
+    temperature-ranges: [200.0, 1000.0, 6000.0]
+    data:
+    - [4.25475, -3.45098e-03, 1.37789e-05, -1.33264e-08, 4.41023e-12, 2.88324e+04, 3.28552]
+    - [3.42744, 3.23295e-03, -1.17296e-06, 1.90508e-10, -1.14492e-14, 2.88068e+04, 6.39209]
+reactions:
+# B-N-H-Cl reactions from Allendorf et al. 1995.
+- equation: Cl3BNH3 <=> BCL3 + NH3  # Reaction 1
+  rate-constant: {A: 1.3e+14, b: 0.0, Ea: 7.3}
+- equation: Cl3BNH3 <=> Cl2BNH2 + HCL  # Reaction 2
+  rate-constant: {A: 1.0e+13, b: 0.0, Ea: 38.0}
+- equation: BCL3 + NH3 <=> Cl2BNH2 + HCL  # Reaction 3
+  rate-constant: {A: 1.66e+12, b: 0.0, Ea: 19.9}
+- equation: Cl2BNH2 <=> ClBNH + HCL  # Reaction 4
+  rate-constant: {A: 3.89e+14, b: 0.0, Ea: 79.0}
+- equation: Cl2BNH2 + NH3 <=> ClB(NH2)2 + HCL  # Reaction 5
+  rate-constant: {A: 1.66e+12, b: 0.0, Ea: 19.9}
+- equation: ClB(NH2)2 + NH3 <=> B(NH2)3 + HCL  # Reaction 6
+  rate-constant: {A: 1.66e+12, b: 2.0, Ea: 19.9}
+- equation: BCL3 <=> BCL2 + CL  # Reaction 7
+  rate-constant: {A: 9.86e+15, b: 0.0, Ea: 113.7}
+- equation: BCL2 <=> BCL + CL  # Reaction 8
+  rate-constant: {A: 2.25e+15, b: 0.0, Ea: 76.9}
+- equation: BCL3 + H <=> BCL2 + HCL  # Reaction 9
+  rate-constant: {A: 1.00e+14, b: 0.0, Ea: 12.0}
+- equation: BCL + HCL <=> BCL2 + H  # Reaction 10
+  rate-constant: {A: 7.23e+13, b: 0.0, Ea: 24.2}
+- equation: NH3 + M <=> NH2 + H + M  # Reaction 11
+  type: three-body
+  rate-constant: {A: 2.50e+16, b: 0.0, Ea: 93.8}
+# N-H gas-phase reactions from Miller and Bowman 1989. 
+- equation: NH + N <=> N2 + H  # Reaction 11
+  rate-constant: {A: 3.00e+13, b: 0.0, Ea: 0.0}
+- equation: NH + H <=> N + H2  # Reaction 12
+  rate-constant: {A: 1.00e+14, b: 0.0, Ea: 0.0}
+- equation: NH2 + H <=> NH + H2  # Reaction 13
+  rate-constant: {A: 6.92e+13, b: 0.0, Ea: 3.65}
+- equation: NH3 + H <=> NH2 + H2  # Reaction 14
+  rate-constant: {A: 6.36e+5, b: 2.39, Ea: 10.171}
+- equation: NH2 + NH <=> N2H2 + H  # Reaction 15
+  rate-constant: {A: 5.00e+13, b: 0.0, Ea: 0.0}
+- equation: NH2 + N <=> N2 + 2 H  # Reaction 16
+  rate-constant: {A: 7.20e+13, b: 0.0, Ea: 0.0}
+- equation: 2 NH <=> N2 + 2 H  # Reaction 17
+  rate-constant: {A: 2.54e+13, b: 0.0, Ea: 0.0}
+- equation: 2 NH2 <=> N2H2 + H2  # Reaction 18
+  rate-constant: {A: 5.00e+11, b: 0.0, Ea: 0.0}
+- equation: NNH <=> N2 + H  # Reaction 20
+  rate-constant: {A: 1.00e+4, b: 0.0, Ea: 0.0}
+- equation: NNH + H <=> N2 + H2  # Reaction 21
+  rate-constant: {A: 1.00e+14, b: 0.0, Ea: 0.0}
+- equation: NNH + NH2 <=> N2 + NH3  # Reaction 22
+  rate-constant: {A: 5.00e+13, b: 0.0, Ea: 0.0}
+- equation: NNH + NH <=> N2 + NH2  # Reaction 23
+  rate-constant: {A: 5.00e+13, b: 0.0, Ea: 0.0}
+- equation: N2H2 + M <=> NNH + H + M  # Reaction 24
+  type: three-body
+  rate-constant: {A: 5.00e+16, b: 0.0, Ea: 50.0}
+  efficiencies: {N2: 2.0, H2: 2.0}
+- equation: N2H2 + H <=> NNH + H2  # Reaction 25
+  rate-constant: {A: 5.00e+13, b: 0.0, Ea: 1.0}
+- equation: N2H2 + NH <=> NNH + NH2  # Reaction 26
+  rate-constant: {A: 1.00e+13, b: 0.0, Ea: 1.0}
+- equation: N2H2 + NH2 <=> NNH + NH3  # Reaction 27
+  rate-constant: {A: 1.00e+13, b: 0.0, Ea: 1.0} 
+# H-only reactions. From Miller and Bowman 1989. 
+- equation: 2 H + M <=> H2 + M  # Reaction 28
+  type: three-body
+  rate-constant: {A: 1.00e+18, b: -1.0, Ea: 0.0}
+  efficiencies: {H2: 0.0}
+  duplicate: true
+- equation: 2 H + H2 <=> 2 H2  # Reaction 29
+  rate-constant: {A: 9.20e+16, b: -0.6, Ea: 0.0}
+  duplicate: true

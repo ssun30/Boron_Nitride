@@ -1,9 +1,8 @@
 description: |-
-  B-N-H-Cl reaction mechanism taken from M. Allendorf et al. 1995, 
-  N-H only reaction mechanism taken from J.A. Miller and C.T. Bowman 1989.
-  Thermochemistry data taken from M. Allendorf et al. 1997 and NASA 7-coefficient 
-  polynomial databse. 
-  This file uses Piecewise Gibbs model for selected species from Allendorf 1997. 
+  Trough mechanism from 'S. J. Harris and D. G. Goodwin, 'Growth on
+  the reconstructed diamond (100) surface, 'J. Phys. Chem. vol. 97,
+  23-28 (1993). reactions a - t are taken directly from Table II,
+  with thermochemistry from Table IV. Reaction u is added here.
 
 units: {length: cm, quantity: mol, activation-energy: kcal/mol}
 
@@ -23,41 +22,42 @@ phases:
 
 species:
 # From Allendorf 1997
+# Note: units for Gibbs free energy in Piecewise-Gibbs model is J/mol instead of the unit for h0
 - name: Cl3BNH3
   composition: {H: 3, B: 1, N: 1, Cl: 3}
   thermo:
     model: piecewise-Gibbs
     h0: -133.0 kcal/mol
     dimensionless: false
-    data: {298.15: -111.7, 600.0: -90.0, 1000.0: -60.6, 1500: -24.8, 2000.0: 10.5, 2500.0: 45.5}
+    data: {298.15: -4.673528e+05, 600.0: -3.7656e+05, 1000.0: -2.535504e+05, 1500: -1.03763e+05, 2000.0: 4.3932e+04, 2500.0: 1.90372e+05}
 - name: Cl2BNH2
   composition: {H: 2, B: 1, N: 1, Cl: 2}
   thermo:
     model: piecewise-Gibbs
     h0: -99.3 kcal/mol
     dimensionless: false
-    data: {298.15: -87.9, 600.0: -76.3, 1000.0: -60.3, 1500: -40.8, 2000.0: -21.5, 2500.0: -2.1}
+    data: {298.15: -3.677736e+05, 600.0: -3.192392e+05, 1000.0: -2.522952e+05, 1500: -1.707072e+05, 2000.0: -8.9956e+04, 2500.0: -8.7864e+03}
 - name: ClBNH
   composition: {H: 1, B: 1, N: 1, Cl: 1}
   thermo:
     model: piecewise-Gibbs
     h0: -18.9 kcal/mol
     dimensionless: false
-    data: {298.15: -16.5, 600.0: -14.1, 1000.0: -10.8, 1500: -7.0, 2000.0: -3.0, 2500.0: 1.3}
+    data: {298.15: -6.9036e+04, 600.0: -5.89944e+04, 1000.0: -4.51872e+04, 1500: -2.9288e+04, 2000.0: -1.2552e+04, 2500.0: 5.4392e+03}
 - name: ClB(NH2)2
   composition: {H: 4, B: 1, N: 2, Cl: 1}
   thermo:
     model: piecewise-Gibbs
     h0: -91.3 kcal/mol
     dimensionless: false
-    data: {298.15: -72.4, 600.0: -52.9, 1000.0: -26.5, 1500: 5.8, 2000.0: 37.8, 2500.0: 69.6}
+    data: {298.15: -3.029216e+05, 600.0: -2.213336e+05, 1000.0: -1.10876e+05, 1500: 2.42672e+04, 2000.0: 1.581552e+05, 2500.0: 2.912064e+05}
 - name: B(NH2)3
   composition: {H: 6, B: 1, N: 3}
   thermo:
     model: piecewise-Gibbs
     h0: -74.6 kcal/mol
     dimensionless: false
-    data: {298.15: -48.8, 600.0: -22.3, 1000.0: 13.6, 1500: 57.4, 2000.0: 100.4, 2500.0: 143.0}
+    data: {298.15: -2.041792e+05, 600.0: -9.33032e+04, 1000.0: 5.69024e+04, 1500: 2.401616e+05, 2000.0: 4.200736e+05, 2500.0: 5.98312e+05}
 - name: NNH # From RMG databse NOx2018
   composition: {H: 1, N: 2}
   thermo: 

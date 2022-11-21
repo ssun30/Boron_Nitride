@@ -1,9 +1,8 @@
 description: |-
-  B-N-H-Cl reaction mechanism taken from M. Allendorf et al. 1995, 
-  N-H only reaction mechanism taken from J.A. Miller and C.T. Bowman 1989.
-  Thermochemistry data taken from M. Allendorf et al. 1997 and NASA 7-coefficient 
-  polynomial databse. 
-  This file uses constant-cp model for selected species from Allendorf 1997. 
+  Trough mechanism from 'S. J. Harris and D. G. Goodwin, 'Growth on
+  the reconstructed diamond (100) surface, 'J. Phys. Chem. vol. 97,
+  23-28 (1993). reactions a - t are taken directly from Table II,
+  with thermochemistry from Table IV. Reaction u is added here.
 
 units: {length: cm, quantity: mol, activation-energy: kcal/mol}
 
@@ -13,7 +12,7 @@ phases:
   elements: [H, B, N, Cl]
   species: 
     - species: [Cl3BNH3, Cl2BNH2, ClBNH, ClB(NH2)2, B(NH2)3, NNH]
-    - nasa_gas.yaml/species: [NH3, N2H2, NH2, NH, N2, N, H2, H, BCL3, BCL2, BCL, HCL, CL, He]
+    - nasa_gas.yaml/species: [NH3, N2H2, NH2, NH, N2, N, H2, H, BCL3, BCL2, BCL, HCL, CL]
   kinetics: gas
   reactions: all
   state:
