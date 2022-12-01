@@ -1,7 +1,7 @@
 # Data sources
 database(
-    thermoLibraries = ['BurkeH2O2', 'primaryThermoLibrary','DFT_QCI_thermo','CH','CHN','CHO','CHON','CN','NISTThermoLibrary','thermo_DFT_CCSDTF12_BAC','GRI-Mech3.0-N'],
-    reactionLibraries = [('Nitrogen_Dean_and_Bozzelli',False)], 
+    thermoLibraries = ['primaryThermoLibrary','DFT_QCI_thermo','CH','CHN','CHO','CHON','CN','NISTThermoLibrary','thermo_DFT_CCSDTF12_BAC','GRI-Mech3.0-N','Chlorinated_Hydrocarbons', 'CHOCl_G4'],
+    reactionLibraries = ['Nitrogen_Dean_and_Bozzelli', 'CF2BrCl'], 
     seedMechanisms = [],
     kineticsDepositories = ['training'], 
     kineticsFamilies = 'default',
@@ -11,9 +11,9 @@ database(
 # Constraints on generated species
 generatedSpeciesConstraints(
     allowed = ['input species', 'seed mechanisms', 'reaction libraries'],
-    #maximumCarbonAtoms = 7,
+    maximumCarbonAtoms = 4,
     #maximumOxygenAtoms = 5,
-    maximumNitrogenAtoms = 2,
+    maximumNitrogenAtoms = 4,
     #maximumSiliconAtoms = 0,
     #maximumSulfurAtoms = 0,
     #maximumHeavyAtoms = 3,
@@ -22,18 +22,18 @@ generatedSpeciesConstraints(
 )
 
 # List of species
-# species(
-#     label='CCl4',
-#     reactive=True,
-#     structure=adjacencyList(
-#         """
-#         1 Cl u0 p3 c0 {2,S}
-#         2 C  u0 p0 c0 {1,S} {3,S} {4,S} {5,S}
-#         3 Cl u0 p3 c0 {2,S}
-#         4 Cl u0 p3 c0 {2,S}
-#         5 Cl u0 p3 c0 {2,S}
-#         """),
-# )
+species(
+    label='CCl4',
+    reactive=True,
+    structure=adjacencyList(
+        """
+        1 Cl u0 p3 c0 {2,S}
+        2 C  u0 p0 c0 {1,S} {3,S} {4,S} {5,S}
+        3 Cl u0 p3 c0 {2,S}
+        4 Cl u0 p3 c0 {2,S}
+        5 Cl u0 p3 c0 {2,S}
+        """),
+)
 species(
     label='NH3',
     reactive=True,
@@ -54,7 +54,8 @@ simpleReactor(
     temperature=(1200,'K'),
     pressure=(1.0,'bar'),
     initialMoleFractions={
-        "NH3": 0.2,
+        "CCl4": 0.05,
+        "NH3": 0.15,
         "H2": 0.8,
     },
     terminationConversion={
