@@ -71,8 +71,8 @@ simulator(
 
 model(
     toleranceKeepInEdge=0.0,
-    toleranceMoveToCore=0.5,
-    toleranceInterruptSimulation=0.5,
+    toleranceMoveToCore=0.05,
+    toleranceInterruptSimulation=0.05,
     maximumEdgeSpecies=100000
 )
 
@@ -97,6 +97,6 @@ model(
 
 options(
     units='si',
-    generateOutputHTML=False,
-    generatePlots=False,
+    generateOutputHTML=True,
+    generatePlots=True,
 )

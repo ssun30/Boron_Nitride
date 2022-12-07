@@ -1,0 +1,741 @@
+generator: ck2yaml
+input-files: [chem.inp, tran.dat]
+cantera-version: 3.0.0a3
+date: Wed, 30 Nov 2022 21:26:02 -0500
+
+units: {length: cm, time: s, quantity: mol, activation-energy: kcal/mol}
+
+phases:
+- name: gas
+  thermo: ideal-gas
+  elements: [H, D, T, C, Ci, O, Oi, N, Ne, Ar, He, Si, S, F, Cl, Br, I,
+    X]
+  species: [Ne, CCl4(1), NH3(2), H2(3), NH2(10), H(11), CH3(28), CH4(37),
+    C2H5(70), C2H6(87), C2H4(88), C2H3(91), CL(224), CH3CL(235), HCL(238),
+    CH2CL(302), S(303), CHCL2(305), CHCL3(306), CCL2(307), CCL3(308), S(324),
+    S(327), S(363), S(366), NCCl(369), S(400), S(401)]
+  kinetics: gas
+  transport: mixture-averaged
+  state: {T: 300.0, P: 1 atm}
+
+elements:
+- symbol: Ci
+  atomic-weight: 13.003
+- symbol: D
+  atomic-weight: 2.014
+- symbol: Oi
+  atomic-weight: 17.999
+- symbol: T
+  atomic-weight: 3.016
+- symbol: X
+  atomic-weight: 195.083
+
+species:
+- name: Ne
+  composition: {Ne: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [200.0, 6000.0]
+    data:
+    - [2.5, 0.0, 0.0, 0.0, 0.0, -745.375, 3.35532]
+  transport:
+    model: gas
+    geometry: atom
+    well-depth: 148.6
+    diameter: 3.758
+    note: Epsilon & sigma estimated with fixed Lennard Jones Parameters.
+      This is the fallback method! Try improving transport databases!
+- name: CCl4(1)
+  composition: {C: 1, Cl: 4}
+  thermo:
+    model: NASA7
+    temperature-ranges: [298.0, 711.74, 1500.0]
+    data:
+    - [2.83114, 0.0400388, -6.92547e-05, 5.78087e-08, -1.8956e-11, -1.36393e+04,
+      11.8805]
+    - [7.23134, 0.0153093, -1.71368e-05, 8.99091e-09, -1.80854e-12, -1.42657e+04,
+      -7.85163]
+  transport:
+    model: gas
+    geometry: nonlinear
+    well-depth: 451.926
+    diameter: 4.795
+    note: Epsilon & sigma estimated with Tc=586.92 K, Pc=77.35 bar (from
+      Joback method)
+- name: NH3(2)
+  composition: {H: 3, N: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [100.0, 993.3, 5000.0]
+    data:
+    - [4.09068987, -2.07166287e-03, 1.14753076e-05, -9.47512437e-09, 2.61227412e-12,
+      -6690.36412, 0.0222454117]
+    - [2.12301211, 6.45660408e-03, -2.31619307e-06, 3.93872026e-10, -2.58109969e-14,
+      -6329.28502, 9.35182104]
+  transport:
+    model: gas
+    geometry: nonlinear
+    well-depth: 481.001
+    diameter: 2.92
+    dipole: 1.47
+    rotational-relaxation: 10.0
+    note: GRI-Mech
+- name: H2(3)
+  composition: {H: 2}
+  thermo:
+    model: NASA7
+    temperature-ranges: [100.0, 1959.07, 5000.0]
+    data:
+    - [3.43536403, 2.12711126e-04, -2.78626796e-07, 3.40268542e-10, -7.76035403e-14,
+      -1031.35984, -3.90841698]
+    - [2.78817514, 5.87628848e-04, 1.59016078e-07, -5.5275039e-11, 4.34319267e-15,
+      -596.149762, 0.112677478]
+  transport:
+    model: gas
+    geometry: linear
+    well-depth: 38.0
+    diameter: 2.92
+    polarizability: 0.79
+    rotational-relaxation: 280.0
+    note: NIST_Fluorine
+- name: NH2(10)
+  composition: {H: 2, N: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [100.0, 1522.05, 5000.0]
+    data:
+    - [4.08973514, -1.1551078e-03, 4.13794654e-06, -2.48321995e-09, 4.8427122e-13,
+      2.11773523e+04, 0.289569221]
+    - [2.68015909, 3.36840804e-03, -1.12727562e-06, 1.76554518e-10, -1.06785101e-14,
+      2.15115638e+04, 7.37038512]
+  transport:
+    model: gas
+    geometry: nonlinear
+    well-depth: 80.0
+    diameter: 2.65
+    polarizability: 2.26
+    rotational-relaxation: 4.0
+    note: GRI-Mech
+- name: H(11)
+  composition: {H: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [100.0, 4996.86, 5000.0]
+    data:
+    - [2.5, 4.30732087e-14, -5.2891251e-17, 2.10457488e-20, -2.57139738e-24,
+      2.54742178e+04, -0.444972896]
+    - [-48.6862231, 0.0190728012, 8.49269033e-07, -9.90485659e-10, 9.34419177e-14,
+      1.03971294e+05, 356.208045]
+  transport:
+    model: gas
+    geometry: atom
+    well-depth: 145.0
+    diameter: 2.05
+    note: NIST_Fluorine
+- name: CH3(28)
+  composition: {C: 1, H: 3}
+  thermo:
+    model: NASA7
+    temperature-ranges: [100.0, 660.45, 5000.0]
+    data:
+    - [3.9480053, 8.27594119e-04, 8.3493384e-06, -9.8263759e-09, 3.80105408e-12,
+      1.64253714e+04, 0.336653491]
+    - [3.22169563, 5.22646055e-03, -1.64124828e-06, 2.58224436e-10, -1.6257926e-14,
+      1.65213099e+04, 3.53938179]
+  transport:
+    model: gas
+    geometry: linear
+    well-depth: 144.0
+    diameter: 3.8
+    note: NIST_Fluorine
+- name: CH4(37)
+  composition: {C: 1, H: 4}
+  thermo:
+    model: NASA7
+    temperature-ranges: [100.0, 1084.12, 5000.0]
+    data:
+    - [4.20541679, -5.35559144e-03, 2.51123865e-05, -2.13763581e-08, 5.97526898e-12,
+      -1.01619434e+04, -0.921284857]
+    - [0.908256809, 0.0114541005, -4.57174656e-06, 8.29193594e-10, -5.6631647e-14,
+      -9719.97053, 13.9931449]
+  transport:
+    model: gas
+    geometry: nonlinear
+    well-depth: 141.4
+    diameter: 3.746
+    polarizability: 2.6
+    rotational-relaxation: 13.0
+    note: NIST_Fluorine
+- name: C2H5(70)
+  composition: {C: 2, H: 5}
+  thermo:
+    model: NASA7
+    temperature-ranges: [100.0, 967.57, 5000.0]
+    data:
+    - [3.69274383, 1.87291497e-03, 3.11944951e-05, -3.71204162e-08, 1.32023608e-11,
+      1.31683449e+04, 7.07159578]
+    - [4.21413833, 0.012265748, -4.37063305e-06, 7.87976411e-10, -5.56030769e-14,
+      1.24800674e+04, 1.53801748]
+  transport:
+    model: gas
+    geometry: nonlinear
+    well-depth: 252.3
+    diameter: 4.302
+    rotational-relaxation: 1.5
+    note: NIST_Fluorine
+- name: C2H6(87)
+  composition: {C: 2, H: 6}
+  thermo:
+    model: NASA7
+    temperature-ranges: [100.0, 981.61, 5000.0]
+    data:
+    - [3.74670807, 4.54782632e-05, 4.07963378e-05, -4.57413693e-08, 1.56842598e-11,
+      -1.14740713e+04, 4.74139501]
+    - [3.34703981, 0.0161748825, -6.00958523e-06, 1.09621173e-09, -7.72295579e-14,
+      -1.20942287e+04, 3.10360766]
+  transport:
+    model: gas
+    geometry: nonlinear
+    well-depth: 252.3
+    diameter: 4.302
+    rotational-relaxation: 1.5
+    note: NIST_Fluorine
+- name: C2H4(88)
+  composition: {C: 2, H: 4}
+  thermo:
+    model: NASA7
+    temperature-ranges: [100.0, 946.0, 5000.0]
+    data:
+    - [3.9887847, -6.74743049e-03, 5.04409193e-05, -5.70759611e-08, 2.0495185e-11,
+      5047.04645, 3.80485237]
+    - [4.59014174, 8.72736651e-03, -2.66501374e-06, 4.81729669e-10, -3.6070633e-14,
+      4127.05236, -3.32413356]
+  transport:
+    model: gas
+    geometry: nonlinear
+    well-depth: 280.8
+    diameter: 3.971
+    rotational-relaxation: 1.5
+    note: NIST_Fluorine
+- name: C2H3(91)
+  composition: {C: 2, H: 3}
+  thermo:
+    model: NASA7
+    temperature-ranges: [100.0, 933.67, 5000.0]
+    data:
+    - [3.83067508, -1.4759709e-03, 3.08990812e-05, -3.80460071e-08, 1.43163494e-11,
+      3.45242409e+04, 5.61957462]
+    - [5.36093531, 5.27331016e-03, -1.31951824e-06, 2.21544796e-10, -1.68751999e-14,
+      3.36585527e+04, -4.76369292]
+  transport:
+    model: gas
+    geometry: nonlinear
+    well-depth: 208.999
+    diameter: 4.1
+    rotational-relaxation: 1.0
+    note: NIST_Fluorine
+- name: CL(224)
+  composition: {Cl: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [200.0, 1000.0, 6000.0]
+    data:
+    - [2.26062, 1.54154e-03, -6.80284e-07, -1.59973e-09, 1.15417e-12, 1.38553e+04,
+      6.57021]
+    - [2.94658, -3.85985e-04, 1.36139e-07, -2.17033e-11, 1.28751e-15, 1.3697e+04,
+      3.1133]
+  transport:
+    model: gas
+    geometry: atom
+    well-depth: 130.8
+    diameter: 3.613
+    rotational-relaxation: 1.0
+    note: NOx2018
+- name: CH3CL(235)
+  composition: {C: 1, H: 3, Cl: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [10.0, 740.83, 3000.0]
+    data:
+    - [4.06993, -4.79947e-03, 3.79157e-05, -4.59844e-08, 1.84177e-11, -1.10662e+04,
+      5.10056]
+    - [1.42627, 0.0134735, -7.17954e-06, 1.88274e-09, -1.94328e-13, -1.07842e+04,
+      16.321]
+  transport:
+    model: gas
+    geometry: nonlinear
+    well-depth: 329.607
+    diameter: 4.546
+    note: Epsilon & sigma estimated with Tc=428.06 K, Pc=66.21 bar (from
+      Joback method)
+- name: HCL(238)
+  composition: {Cl: 1, H: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [200.0, 1000.0, 6000.0]
+    data:
+    - [3.46376, 4.76484e-04, -2.00301e-06, 3.31714e-09, -1.44958e-12, -1.21444e+04,
+      2.66428]
+    - [2.75758, 1.45387e-03, -4.79647e-07, 7.77909e-11, -4.79574e-15, -1.19138e+04,
+      6.52197]
+  transport:
+    model: gas
+    geometry: linear
+    well-depth: 344.7
+    diameter: 3.339
+    rotational-relaxation: 1.0
+    note: NOx2018
+- name: CH2CL(302)
+  composition: {C: 1, H: 2, Cl: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [10.0, 449.62, 3000.0]
+    data:
+    - [3.86219, 0.0142634, -5.7405e-05, 1.24395e-07, -9.29955e-11, 1.22486e+04,
+      6.84207]
+    - [3.70085, 6.89427e-03, -3.4478e-06, 8.39322e-10, -7.99379e-14, 1.23521e+04,
+      8.48115]
+  transport:
+    model: gas
+    geometry: nonlinear
+    well-depth: 329.607
+    diameter: 4.546
+    note: Epsilon & sigma estimated with Tc=428.06 K, Pc=66.21 bar (from
+      Joback method)
+- name: S(303)
+  composition: {C: 1, H: 2, Cl: 2}
+  thermo:
+    model: NASA7
+    temperature-ranges: [298.0, 684.96, 1500.0]
+    data:
+    - [1.67987, 0.0181637, -1.07685e-05, -1.85287e-09, 3.41554e-12, -1.26835e+04,
+      18.0126]
+    - [1.93499, 0.0185429, -1.56921e-05, 6.92293e-09, -1.24151e-12, -1.27623e+04,
+      16.5582]
+  transport:
+    model: gas
+    geometry: nonlinear
+    well-depth: 368.71
+    diameter: 4.624
+    note: Epsilon & sigma estimated with Tc=478.84 K, Pc=70.38 bar (from
+      Joback method)
+- name: CHCL2(305)
+  composition: {C: 1, H: 1, Cl: 2}
+  thermo:
+    model: NASA7
+    temperature-ranges: [10.0, 567.0, 3000.0]
+    data:
+    - [3.95837, 2.47158e-03, 3.55196e-05, -7.65764e-08, 4.74581e-11, 9075.65,
+      9.50715]
+    - [4.41086, 8.77734e-03, -6.28956e-06, 2.12659e-09, -2.70363e-13, 8871.67,
+      6.23456]
+  transport:
+    model: gas
+    geometry: nonlinear
+    well-depth: 368.71
+    diameter: 4.624
+    note: Epsilon & sigma estimated with Tc=478.84 K, Pc=70.38 bar (from
+      Joback method)
+- name: CHCL3(306)
+  composition: {C: 1, H: 1, Cl: 3}
+  thermo:
+    model: NASA7
+    temperature-ranges: [298.0, 811.17, 1500.0]
+    data:
+    - [1.50654, 0.0318882, -4.31201e-05, 2.81802e-08, -6.90751e-12, -1.3916e+04,
+      19.1716]
+    - [5.93472, 0.0128665, -1.315e-05, 7.82627e-09, -1.95272e-12, -1.4727e+04,
+      -1.83579]
+  transport:
+    model: gas
+    geometry: nonlinear
+    well-depth: 409.949
+    diameter: 4.712
+    note: Epsilon & sigma estimated with Tc=532.40 K, Pc=73.93 bar (from
+      Joback method)
+- name: CCL2(307)
+  composition: {C: 1, Cl: 2}
+  thermo:
+    model: NASA7
+    temperature-ranges: [10.0, 580.71, 3000.0]
+    data:
+    - [3.96424, 2.10486e-03, 2.42565e-05, -5.53641e-08, 3.47438e-11, 2.59574e+04,
+      8.03065]
+    - [4.74855, 4.89616e-03, -4.118e-06, 1.50748e-09, -1.99821e-13, 2.57281e+04,
+      3.48355]
+  transport:
+    model: gas
+    geometry: nonlinear
+    well-depth: 237.1
+    diameter: 5.118
+    note: Epsilon & sigma estimated with fixed Lennard Jones Parameters.
+      This is the fallback method! Try improving transport databases!
+- name: CCL3(308)
+  composition: {C: 1, Cl: 3}
+  thermo:
+    model: NASA7
+    temperature-ranges: [10.0, 474.92, 3000.0]
+    data:
+    - [3.88786, 7.60386e-03, 5.87506e-05, -1.79361e-07, 1.4272e-10, 6418.72,
+      10.5664]
+    - [6.24618, 8.02903e-03, -6.67e-06, 2.42071e-09, -3.18995e-13, 5965.91,
+      -1.46395]
+  transport:
+    model: gas
+    geometry: nonlinear
+    well-depth: 409.949
+    diameter: 4.712
+    note: Epsilon & sigma estimated with Tc=532.40 K, Pc=73.93 bar (from
+      Joback method)
+- name: S(324)
+  composition: {C: 2, H: 4, Cl: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [10.0, 413.12, 3000.0]
+    data:
+    - [3.94514, 3.91709e-03, 7.71873e-05, -1.96009e-07, 1.5493e-10, 9724.13,
+      8.91122]
+    - [3.48105, 0.0182353, -1.04728e-05, 3.01539e-09, -3.43521e-13, 9678.63,
+      9.72517]
+  transport:
+    model: gas
+    geometry: nonlinear
+    well-depth: 348.883
+    diameter: 4.871
+    note: Epsilon & sigma estimated with Tc=453.10 K, Pc=56.96 bar (from
+      Joback method)
+- name: S(327)
+  composition: {C: 2, H: 3, Cl: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [298.0, 590.44, 1000.0]
+    data:
+    - [3.70051, 8.63876e-04, 4.61027e-05, -6.94228e-08, 3.16348e-11, 1090.31,
+      8.91651]
+    - [0.152401, 0.0243855, -1.2344e-05, -4.90911e-09, 4.9449e-12, 1518.28,
+      24.2407]
+  transport:
+    model: gas
+    geometry: nonlinear
+    well-depth: 349.153
+    diameter: 4.659
+    note: Epsilon & sigma estimated with Tc=453.45 K, Pc=65.14 bar (from
+      Joback method)
+- name: S(363)
+  composition: {C: 1, H: 2, Cl: 3, N: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [100.0, 963.44, 5000.0]
+    data:
+    - [4.08825936, -0.0156512987, 8.1944975e-05, -9.50410588e-08, 3.46558101e-11,
+      -388.65219, -25.9712936]
+    - [8.60176483, 1.30633415e-03, -3.33450002e-08, 1.41853446e-10, -2.18611986e-14,
+      -2915.07886, -56.1761951]
+  transport:
+    model: gas
+    geometry: nonlinear
+    well-depth: 485.814
+    diameter: 5.532
+    note: Epsilon & sigma estimated with Tc=630.93 K, Pc=54.15 bar (from
+      Joback method)
+- name: S(366)
+  composition: {C: 1, H: 3, Cl: 2, N: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [100.0, 963.44, 5000.0]
+    data:
+    - [4.08825936, -0.0156512987, 8.1944975e-05, -9.50410588e-08, 3.46558101e-11,
+      -388.65219, -24.8726813]
+    - [8.60176483, 1.30633415e-03, -3.33450002e-08, 1.41853446e-10, -2.18611986e-14,
+      -2915.07886, -55.0775828]
+  transport:
+    model: gas
+    geometry: nonlinear
+    well-depth: 444.631
+    diameter: 5.439
+    note: Epsilon & sigma estimated with Tc=577.44 K, Pc=52.13 bar (from
+      Joback method)
+- name: NCCl(369)
+  composition: {C: 1, H: 4, Cl: 1, N: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [100.0, 963.44, 5000.0]
+    data:
+    - [4.08825936, -0.0156512987, 8.1944975e-05, -9.50410588e-08, 3.46558101e-11,
+      -388.65219, -24.8726813]
+    - [8.60176483, 1.30633415e-03, -3.33450002e-08, 1.41853446e-10, -2.18611986e-14,
+      -2915.07886, -55.0775828]
+  transport:
+    model: gas
+    geometry: nonlinear
+    well-depth: 404.406
+    diameter: 5.343
+    note: Epsilon & sigma estimated with Tc=525.20 K, Pc=50.02 bar (from
+      Joback method)
+- name: S(400)
+  composition: {C: 2, H: 3, Cl: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [100.0, 3450.12, 5000.0]
+    data:
+    - [3.47069033, 0.0151041257, -7.88791191e-06, 1.69599645e-09, -1.34672404e-13,
+      4.03398571e+04, 9.52688572]
+    - [4.9535605, 0.0100113921, -4.20705893e-06, 7.01335275e-10, -4.20617794e-14,
+      4.13244495e+04, 3.44626028]
+  transport:
+    model: gas
+    geometry: nonlinear
+    well-depth: 237.1
+    diameter: 5.118
+    note: Epsilon & sigma estimated with fixed Lennard Jones Parameters.
+      This is the fallback method! Try improving transport databases!
+- name: S(401)
+  composition: {C: 2, H: 3, Cl: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [100.0, 954.77, 5000.0]
+    data:
+    - [3.20904045, 0.0142597641, -1.18640781e-06, -8.81119067e-09, 4.56957272e-12,
+      2.99845399e+04, 10.6536484]
+    - [6.63053654, 7.51206381e-03, -2.5044078e-06, 4.31547771e-10, -2.97508385e-14,
+      2.89853985e+04, -7.50559986]
+  transport:
+    model: gas
+    geometry: nonlinear
+    well-depth: 237.1
+    diameter: 5.118
+    note: Epsilon & sigma estimated with fixed Lennard Jones Parameters.
+      This is the fallback method! Try improving transport databases!
+
+reactions:
+- equation: CCl4(1) <=> CL(224) + CCL3(308)  # Reaction 1
+  rate-constant: {A: 4.89e+32, b: -5.41, Ea: 73.395}
+- equation: H2(3) + M <=> H(11) + H(11) + M  # Reaction 2
+  type: three-body
+  rate-constant: {A: 4.577e+19, b: -1.4, Ea: 104.4}
+  efficiencies: {CH4(37): 2.0, C2H6(87): 3.0, H2(3): 2.5}
+- equation: CL(224) + H(11) + M <=> HCL(238) + M  # Reaction 3
+  type: three-body
+  rate-constant: {A: 5.3e+21, b: -2.0, Ea: -2.0}
+  efficiencies: {CH4(37): 2.0, C2H6(87): 3.0, CH3CL(235): 3.0, CCl4(1): 3.0,
+    CHCL3(306): 3.0, S(303): 3.0, H2(3): 2.0}
+- equation: H(11) + HCL(238) <=> CL(224) + H2(3)  # Reaction 4
+  rate-constant: {A: 1.69e+13, b: 0.0, Ea: 4.135}
+- equation: H(11) + CCl4(1) <=> HCL(238) + CCL3(308)  # Reaction 5
+  rate-constant: {A: 1.2e+12, b: 0.0, Ea: 5.0}
+- equation: NH3(2) + M <=> H(11) + NH2(10) + M  # Reaction 6
+  type: three-body
+  rate-constant: {A: 3.6e+16, b: 0.0, Ea: 93.733}
+- equation: H(11) + NH3(2) <=> H2(3) + NH2(10)  # Reaction 7
+  rate-constant: {A: 5.4e+05, b: 2.4, Ea: 9.91}
+- equation: HCL(238) + NH2(10) <=> CL(224) + NH3(2)  # Reaction 8
+  rate-constant: {A: 4.504698e+07, b: 1.503, Ea: 6.331}
+- equation: NH2(10) + CCL3(308) <=> S(363)  # Reaction 9
+  rate-constant: {A: 6.89518e+79, b: -21.017, Ea: 0.0}
+- equation: CL(224) + CHCL3(306) <=> HCL(238) + CCL3(308)  # Reaction 10
+  rate-constant: {A: 1.6e+13, b: 0.0, Ea: 3.3}
+- equation: H2(3) + CCL3(308) <=> H(11) + CHCL3(306)  # Reaction 11
+  rate-constant: {A: 5.01e+12, b: 0.0, Ea: 14.3}
+- equation: NH2(10) + CHCL3(306) <=> NH3(2) + CCL3(308)  # Reaction 12
+  rate-constant: {A: 2.206363e+13, b: 0.0, Ea: 5.392}
+- equation: H(11) + CCL3(308) <=> CHCL3(306)  # Reaction 13
+  rate-constant: {A: 7.88213e+12, b: 0.315, Ea: 0.0}
+- equation: CHCL3(306) <=> HCL(238) + CCL2(307)  # Reaction 14
+  rate-constant: {A: 5.2e+12, b: 0.0, Ea: 51.5}
+- equation: CL(224) + CCL2(307) <=> CCL3(308)  # Reaction 15
+  rate-constant: {A: 1.58e+13, b: 0.0, Ea: 0.0}
+- equation: CHCL3(306) <=> CL(224) + CHCL2(305)  # Reaction 16
+  rate-constant: {A: 2.65e+19, b: -1.88, Ea: 72.04}
+- equation: H(11) + CHCL3(306) <=> HCL(238) + CHCL2(305)  # Reaction 17
+  rate-constant: {A: 3.6e+12, b: 0.0, Ea: 6.2}
+- equation: CCL2(307) + CHCL3(306) <=> CCL3(308) + CHCL2(305)  # Reaction 18
+  rate-constant: {A: 2.0e+12, b: 0.0, Ea: 29.7}
+- equation: H(11) + CCL3(308) <=> CL(224) + CHCL2(305)  # Reaction 19
+  rate-constant: {A: 8.0e+13, b: 0.0, Ea: 0.0}
+- equation: H(11) + CCL2(307) <=> CHCL2(305)  # Reaction 20
+  rate-constant: {A: 1.0e+14, b: 0.0, Ea: 0.0}
+- equation: NH2(10) + CHCL2(305) <=> S(366)  # Reaction 21
+  rate-constant: {A: 6.89518e+79, b: -21.017, Ea: 0.0}
+- equation: H(11) + CHCL2(305) <=> CL(224) + CH2CL(302)  # Reaction 22
+  rate-constant: {A: 1.25e+14, b: -0.03, Ea: 0.57}
+- equation: NH2(10) + CH2CL(302) <=> NCCl(369)  # Reaction 23
+  rate-constant: {A: 6.89518e+79, b: -21.017, Ea: 0.0}
+- equation: H(11) + CH2CL(302) <=> CL(224) + CH3(28)  # Reaction 24
+  rate-constant: {A: 5.12e+14, b: -0.22, Ea: 0.31}
+- equation: H(11) + CH3(28) (+M) <=> CH4(37) (+M)  # Reaction 25
+  type: falloff
+  low-P-rate-constant: {A: 2.477e+33, b: -4.76, Ea: 2.44}
+  high-P-rate-constant: {A: 1.27e+16, b: -0.63, Ea: 0.383}
+  Troe: {A: 0.783, T3: 74.0, T1: 2940.0, T2: 6960.0}
+  efficiencies: {C2H6(87): 3.0, CH4(37): 2.0, H2(3): 2.0}
+- equation: H(11) + CH4(37) <=> H2(3) + CH3(28)  # Reaction 26
+  rate-constant: {A: 6.14e+05, b: 2.5, Ea: 9.587}
+- equation: CL(224) + CH4(37) <=> HCL(238) + CH3(28)  # Reaction 27
+  rate-constant: {A: 3.09e+13, b: 0.0, Ea: 3.6}
+- equation: CCL3(308) + CH4(37) <=> CHCL3(306) + CH3(28)  # Reaction 28
+  rate-constant: {A: 5.0e+12, b: 0.0, Ea: 14.9}
+- equation: NH2(10) + CH4(37) <=> NH3(2) + CH3(28)  # Reaction 29
+  rate-constant: {A: 1.36e+04, b: 2.87, Ea: 10.691}
+- equation: CH3CL(235) <=> CL(224) + CH3(28)  # Reaction 30
+  rate-constant: {A: 1.31e+37, b: -6.92, Ea: 90.65}
+- equation: H(11) + CH3CL(235) <=> HCL(238) + CH3(28)  # Reaction 31
+  rate-constant: {A: 6.64e+13, b: 0.0, Ea: 7.62}
+- equation: CL(224) + CH3CL(235) <=> HCL(238) + CH2CL(302)  # Reaction 32
+  rate-constant: {A: 3.16e+13, b: 0.0, Ea: 3.3}
+- equation: CH3(28) + CH3CL(235) <=> CH2CL(302) + CH4(37)  # Reaction 33
+  rate-constant: {A: 3.3e+11, b: 0.0, Ea: 9.4}
+- equation: CHCL3(306) + CH3(28) <=> CHCL2(305) + CH3CL(235)  # Reaction 34
+  rate-constant: {A: 2.4e+13, b: 0.0, Ea: 12.0}
+- equation: H(11) + CH2CL(302) <=> CH3CL(235)  # Reaction 35
+  rate-constant: {A: 3.04e+25, b: -4.47, Ea: 3.49}
+- equation: H2(3) + CH2CL(302) <=> H(11) + CH3CL(235)  # Reaction 36
+  rate-constant: {A: 3.9e+12, b: 0.0, Ea: 14.059}
+- equation: CCl4(1) + CH3(28) <=> CCL3(308) + CH3CL(235)  # Reaction 37
+  rate-constant: {A: 1.26e+12, b: 0.0, Ea: 9.9}
+- equation: NH2(10) + CH3CL(235) <=> NH3(2) + CH2CL(302)  # Reaction 38
+  rate-constant: {A: 1.826655e+11, b: 0.647, Ea: 7.435}
+- equation: CHCL3(306) + CH2CL(302) <=> CCL3(308) + CH3CL(235)  # Reaction 39
+  rate-constant: {A: 1.161245e-03, b: 4.342, Ea: 8.854}
+- equation: S(303) <=> CL(224) + CH2CL(302)  # Reaction 40
+  rate-constant: {A: 1.6e+40, b: -7.84, Ea: 83.6}
+- equation: H(11) + S(303) <=> HCL(238) + CH2CL(302)  # Reaction 41
+  rate-constant: {A: 7.0e+13, b: 0.0, Ea: 7.1}
+- equation: CL(224) + S(303) <=> HCL(238) + CHCL2(305)  # Reaction 42
+  rate-constant: {A: 2.79e+13, b: 0.0, Ea: 2.94}
+- equation: S(303) + CH3(28) <=> CHCL2(305) + CH4(37)  # Reaction 43
+  rate-constant: {A: 6.76e+10, b: 0.0, Ea: 7.2}
+- equation: S(303) + CH3(28) <=> CH2CL(302) + CH3CL(235)  # Reaction 44
+  rate-constant: {A: 1.4e+11, b: 0.0, Ea: 4.9}
+- equation: H(11) + CHCL2(305) <=> S(303)  # Reaction 45
+  rate-constant: {A: 4.81e+26, b: -4.82, Ea: 3.81}
+- equation: H2(3) + CHCL2(305) <=> H(11) + S(303)  # Reaction 46
+  rate-constant: {A: 4.63e+12, b: 0.0, Ea: 15.295}
+- equation: NH2(10) + S(303) <=> NH3(2) + CHCL2(305)  # Reaction 47
+  rate-constant: {A: 8.823839e+12, b: 0.0, Ea: 6.052}
+- equation: CHCL2(305) + CHCL3(306) <=> CCL3(308) + S(303)  # Reaction 48
+  rate-constant: {A: 8.333077e-04, b: 4.343, Ea: 6.809}
+- equation: CH2CL(302) + S(303) <=> CHCL2(305) + CH3CL(235)  # Reaction 49
+  rate-constant: {A: 5.46505e-03, b: 4.268, Ea: 9.76}
+- equation: CH3(28) + CH3(28) (+M) <=> C2H6(87) (+M)  # Reaction 50
+  type: falloff
+  low-P-rate-constant: {A: 8.054e+31, b: -3.75, Ea: 0.982}
+  high-P-rate-constant: {A: 2.277e+15, b: -0.69, Ea: 0.175}
+  Troe: {A: 0.0, T3: 570.0, T1: 1.0e+30, T2: 1.0e+30}
+- equation: H(11) + C2H5(70) (+M) <=> C2H6(87) (+M)  # Reaction 51
+  type: falloff
+  low-P-rate-constant: {A: 1.99e+41, b: -7.08, Ea: 6.685}
+  high-P-rate-constant: {A: 5.21e+17, b: -0.99, Ea: 1.58}
+  Troe: {A: 0.842, T3: 125.0, T1: 2220.0, T2: 6880.0}
+  efficiencies: {CH4(37): 2.0, C2H6(87): 3.0, H2(3): 2.0}
+- equation: H(11) + C2H6(87) <=> H2(3) + C2H5(70)  # Reaction 52
+  rate-constant: {A: 1.15e+08, b: 1.9, Ea: 7.53}
+- equation: CH3(28) + C2H6(87) <=> CH4(37) + C2H5(70)  # Reaction 53
+  rate-constant: {A: 0.548, b: 4.0, Ea: 8.28}
+- equation: CH3(28) + CH3(28) <=> H(11) + C2H5(70)  # Reaction 54
+  type: pressure-dependent-Arrhenius
+  rate-constants:
+  - {P: 0.01 atm, A: 4.74e+12, b: 0.105, Ea: 10.664}
+  - {P: 0.1 atm, A: 2.57e+13, b: -0.096, Ea: 11.406}
+  - {P: 1.0 atm, A: 3.1e+14, b: -0.362, Ea: 13.373}
+  - {P: 10.0 atm, A: 2.15e+10, b: 0.885, Ea: 13.533}
+  - {P: 100.0 atm, A: 103.2, b: 3.23, Ea: 11.236}
+- equation: CL(224) + C2H6(87) <=> HCL(238) + C2H5(70)  # Reaction 55
+  rate-constant: {A: 4.37e+13, b: 0.0, Ea: 0.1}
+- equation: CH2CL(302) + CH3(28) <=> CL(224) + C2H5(70)  # Reaction 56
+  rate-constant: {A: 9.27e+19, b: -2.07, Ea: 10.13}
+- equation: CHCL3(306) + C2H5(70) <=> CCL3(308) + C2H6(87)  # Reaction 57
+  rate-constant: {A: 4.799371e-04, b: 4.34, Ea: 1.843}
+- equation: NH2(10) + C2H6(87) <=> NH3(2) + C2H5(70)  # Reaction 58
+  rate-constant: {A: 3.46e+13, b: 0.0, Ea: 13.8}
+- equation: S(303) + C2H5(70) <=> CHCL2(305) + C2H6(87)  # Reaction 59
+  rate-constant: {A: 5.283771e-04, b: 4.464, Ea: 4.826}
+- equation: CH3CL(235) + C2H5(70) <=> CH2CL(302) + C2H6(87)  # Reaction 60
+  rate-constant: {A: 1.291012e-03, b: 4.34, Ea: 7.025}
+- equation: H(11) + C2H4(88) (+M) <=> C2H5(70) (+M)  # Reaction 61
+  type: falloff
+  low-P-rate-constant: {A: 1.419e+39, b: -6.642, Ea: 5.769}
+  high-P-rate-constant: {A: 9.569e+08, b: 1.463, Ea: 1.355}
+  Troe: {A: -0.569, T3: 299.0, T1: -9150.0, T2: 152.0}
+  efficiencies: {CH4(37): 2.0, C2H6(87): 3.0, H2(3): 2.0}
+- equation: CH3(28) + C2H5(70) <=> CH4(37) + C2H4(88)  # Reaction 62
+  rate-constant: {A: 1.18e+04, b: 2.45, Ea: -2.921}
+- equation: H(11) + C2H5(70) <=> H2(3) + C2H4(88)  # Reaction 63
+  rate-constant: {A: 2.0e+12, b: 0.0, Ea: 0.0}
+- equation: CH2CL(302) + CH3(28) <=> HCL(238) + C2H4(88)  # Reaction 64
+  rate-constant: {A: 3.5e+28, b: -4.49, Ea: 9.18}
+- equation: CL(224) + C2H5(70) <=> HCL(238) + C2H4(88)  # Reaction 65
+  rate-constant: {A: 6.33195e+08, b: 1.405, Ea: 0.0}
+- equation: CCL3(308) + C2H5(70) <=> CHCL3(306) + C2H4(88)  # Reaction 66
+  rate-constant: {A: 1.08999e+09, b: 1.265, Ea: 0.0}
+- equation: NH2(10) + C2H5(70) <=> NH3(2) + C2H4(88)  # Reaction 67
+  rate-constant: {A: 7.16832e+08, b: 1.243, Ea: 0.0}
+- equation: CHCL2(305) + C2H5(70) <=> S(303) + C2H4(88)  # Reaction 68
+  rate-constant: {A: 1.08999e+09, b: 1.265, Ea: 0.0}
+- equation: CH2CL(302) + C2H5(70) <=> CH3CL(235) + C2H4(88)  # Reaction 69
+  rate-constant: {A: 1.08999e+09, b: 1.265, Ea: 0.0}
+- equation: C2H5(70) + C2H5(70) <=> C2H4(88) + C2H6(87)  # Reaction 70
+  rate-constant: {A: 6.9e+13, b: -0.35, Ea: 0.0}
+- equation: CH2CL(302) + CH2CL(302) <=> CL(224) + S(324)  # Reaction 71
+  rate-constant: {A: 9.34e+29, b: -4.94, Ea: 14.07}
+- equation: CL(224) + C2H4(88) <=> S(324)  # Reaction 72
+  rate-constant: {A: 2.0e+13, b: 0.0, Ea: 3.5}
+- equation: H(11) + S(324) <=> HCL(238) + C2H4(88)  # Reaction 73
+  rate-constant: {A: 1.0e+14, b: 0.0, Ea: 0.0}
+- equation: C2H4(88) + C2H4(88) <=> C2H3(91) + C2H5(70)  # Reaction 74
+  rate-constant: {A: 4.82e+14, b: 0.0, Ea: 71.53}
+- equation: H(11) + C2H3(91) (+M) <=> C2H4(88) (+M)  # Reaction 75
+  type: falloff
+  low-P-rate-constant: {A: 1.4e+30, b: -3.86, Ea: 3.32}
+  high-P-rate-constant: {A: 6.08e+12, b: 0.27, Ea: 0.28}
+  Troe: {A: 0.782, T3: 208.0, T1: 2660.0, T2: 6100.0}
+  efficiencies: {C2H6(87): 3.0, CH4(37): 2.0, H2(3): 2.0}
+- equation: H(11) + C2H4(88) <=> H2(3) + C2H3(91)  # Reaction 76
+  rate-constant: {A: 5.07e+07, b: 1.93, Ea: 12.95}
+- equation: CH3(28) + C2H4(88) <=> CH4(37) + C2H3(91)  # Reaction 77
+  rate-constant: {A: 6.62, b: 3.7, Ea: 9.5}
+- equation: CL(224) + C2H4(88) <=> HCL(238) + C2H3(91)  # Reaction 78
+  rate-constant: {A: 3.01e+11, b: 0.0, Ea: 0.0}
+- equation: CHCL3(306) + C2H3(91) <=> CCL3(308) + C2H4(88)  # Reaction 79
+  rate-constant: {A: 0.0107712, b: 4.193, Ea: -2.015}
+- equation: NH2(10) + C2H4(88) <=> NH3(2) + C2H3(91)  # Reaction 80
+  rate-constant: {A: 1.56e+13, b: 0.0, Ea: 13.41}
+- equation: S(303) + C2H3(91) <=> CHCL2(305) + C2H4(88)  # Reaction 81
+  rate-constant: {A: 0.05141206, b: 4.118, Ea: 0.322}
+- equation: CH3CL(235) + C2H3(91) <=> CH2CL(302) + C2H4(88)  # Reaction 82
+  rate-constant: {A: 2.801004e-03, b: 4.41, Ea: 1.633}
+- equation: C2H3(91) + C2H6(87) <=> C2H4(88) + C2H5(70)  # Reaction 83
+  rate-constant: {A: 1.08e-03, b: 4.55, Ea: 3.5}
+- equation: CHCL2(305) + CH3(28) <=> HCL(238) + S(327)  # Reaction 84
+  rate-constant: {A: 1.35e+30, b: -4.96, Ea: 11.55}
+- equation: CH2CL(302) + CH2CL(302) <=> HCL(238) + S(327)  # Reaction 85
+  rate-constant: {A: 3.75e+35, b: -6.73, Ea: 13.16}
+- equation: H(11) + S(327) <=> S(324)  # Reaction 86
+  rate-constant: {A: 5.01e+23, b: -4.21, Ea: 8.47}
+- equation: CL(224) + S(324) <=> HCL(238) + S(327)  # Reaction 87
+  rate-constant: {A: 2.0e+13, b: 0.0, Ea: 0.0}
+- equation: H(11) + S(327) <=> CL(224) + C2H4(88)  # Reaction 88
+  rate-constant: {A: 1.55e+13, b: -0.02, Ea: 5.84}
+- equation: H(11) + S(327) <=> HCL(238) + C2H3(91)  # Reaction 89
+  rate-constant: {A: 1.2e+12, b: 0.0, Ea: 15.0}
+- equation: CCl4(1) + C2H3(91) <=> CCL3(308) + S(327)  # Reaction 90
+  rate-constant: {A: 7.5e+12, b: 0.0, Ea: 5.5}
+- equation: CCL3(308) + S(324) <=> CHCL3(306) + S(327)  # Reaction 91
+  rate-constant: {A: 2.71284e+10, b: 0.47, Ea: 0.0}
+- equation: H(11) + S(324) <=> H2(3) + S(327)  # Reaction 92
+  rate-constant: {A: 2.71284e+10, b: 0.47, Ea: 0.0}
+- equation: NH2(10) + S(324) <=> NH3(2) + S(327)  # Reaction 93
+  rate-constant: {A: 2.71284e+10, b: 0.47, Ea: 0.0}
+- equation: CHCL2(305) + S(324) <=> S(303) + S(327)  # Reaction 94
+  rate-constant: {A: 2.71284e+10, b: 0.47, Ea: 0.0}
+- equation: CH2CL(302) + S(324) <=> CH3CL(235) + S(327)  # Reaction 95
+  rate-constant: {A: 2.71284e+10, b: 0.47, Ea: 0.0}
+- equation: CH3(28) + S(324) <=> CH4(37) + S(327)  # Reaction 96
+  rate-constant: {A: 2.71284e+10, b: 0.47, Ea: 0.0}
+- equation: S(324) + C2H5(70) <=> S(327) + C2H6(87)  # Reaction 97
+  rate-constant: {A: 2.71284e+10, b: 0.47, Ea: 0.0}
+- equation: C2H3(91) + S(324) <=> S(327) + C2H4(88)  # Reaction 98
+  rate-constant: {A: 2.71284e+10, b: 0.47, Ea: 0.0}
+- equation: S(401) <=> S(327)  # Reaction 99
+  rate-constant: {A: 9.69919e+16, b: -0.971, Ea: 14.588}
+- equation: S(400) <=> S(327)  # Reaction 100
+  rate-constant: {A: 6.466126e+16, b: -0.971, Ea: 14.588}

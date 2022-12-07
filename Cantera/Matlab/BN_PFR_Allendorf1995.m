@@ -22,7 +22,7 @@ c1 = 2.390e-7; % J/kmol to kcal/mol
 
 % Create the gas phase object
 
-fname1 = 'BNHCL-Allendorf1997_NASA7.yaml';
+fname1 = '/home/ssun30/Work/Boron_Nitride/YAML_Files/BNHCL-Allendorf1997_NASA7.yaml';
 fname2 = 'BNHCL-Allendorf1995.yaml';
 fname3 = 'BNHCL-Allendorf1995_PiecewiseGibbs.yaml';
 phasename = 'gas';
