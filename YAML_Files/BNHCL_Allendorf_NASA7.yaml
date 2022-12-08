@@ -1,8 +1,16 @@
 description: |-
-  Trough mechanism from 'S. J. Harris and D. G. Goodwin, 'Growth on
-  the reconstructed diamond (100) surface, 'J. Phys. Chem. vol. 97,
-  23-28 (1993). reactions a - t are taken directly from Table II,
-  with thermochemistry from Table IV. Reaction u is added here.
+  Thermochemistry data from M. D. Allendorf and C.F. Melius, 
+  'Thermochemistry of Molecules in the B-N-Cl-H System: 
+  Ab Initio Predictions Using the BAC-MP4 Method', J. Phys. Chem.,  
+  vol. 101, 2670-2680 (1997). 
+  Reactions 1 - 11 are taken from M. D. Allendorf, C.F. Melius, T.H. Osterheld,
+  'A Model of the Gas-Phase Chemistry of Boron Nitride CVD from BCl3 and NH3', 1995.
+  Reactions 3 & 5 are taken from A. H. McDaniel and M. D. Allendorf, 
+  'Flow-tube Investigation of the High-temperature Reaction between BCl3 and NH3',
+  J. Phys. Chem. A, vol 102, 7804-7812 (1998).
+  Reactions 12 - 30 are taken from J. A. Miller and C. Bowman, 
+  'Mechanism and Modeling of Nitrogen Chemistry in Combustion', 
+  Prog. Energy Combust. Sci., vol 15, 287-338 (1989).
 
 units: {length: cm, quantity: mol, activation-energy: kcal/mol}
 
@@ -305,11 +313,11 @@ reactions:
 - equation: Cl3BNH3 <=> Cl2BNH2 + HCL  # Reaction 2
   rate-constant: {A: 1.0e+13, b: 0.0, Ea: 38.0}
 - equation: BCL3 + NH3 <=> Cl2BNH2 + HCL  # Reaction 3
-  rate-constant: {A: 1.66e+12, b: 0.0, Ea: 19.9}
+  rate-constant: {A: 4.21e+11, b: 0.0, Ea: 8.35}
 - equation: Cl2BNH2 <=> ClBNH + HCL  # Reaction 4
   rate-constant: {A: 3.89e+14, b: 0.0, Ea: 79.0}
 - equation: Cl2BNH2 + NH3 <=> ClB(NH2)2 + HCL  # Reaction 5
-  rate-constant: {A: 1.66e+12, b: 0.0, Ea: 19.9}
+  rate-constant: {A: 3.88e+11, b: 0.0, Ea: 18.5}
 - equation: ClB(NH2)2 + NH3 <=> B(NH2)3 + HCL  # Reaction 6
   rate-constant: {A: 1.66e+12, b: 2.0, Ea: 19.9}
 - equation: BCL3 <=> BCL2 + CL  # Reaction 7
