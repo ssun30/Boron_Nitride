@@ -20,7 +20,7 @@ close all
 c1 = 2.390e-7; % J/kmol to kcal/mol
 
 % Create the gas phase object
-fname = 'CCl4-NH3.yaml';
+fname = '/home/ssun30/Work/Boron_Nitride/YAML_Files/CCl4-NH3_012523.yaml';
 phasename = 'gas';
 
 g = Solution(fname, phasename);
@@ -47,58 +47,30 @@ X_CCL2 = [];
 X_CH4 = [];
 X_HCL = [];
 X_NH3 = [];
-X_NH2 = [];
-X_H2 = [];
 
 for i = 1:length(T_array1)
     fprintf('Solving for temperature = %d\n', T_array1(i));
     g.TPX = {T_array1(i), P0, X0};
-    output = Plug_Flow(g, {'CCl4(1)', 'CCl3(308)', 'CCl2(307)', 'CH4(37)', 'HCl(238)'}, 0.1);
+    output = Plug_Flow(g, {'CCL4(1)', 'CCL3(363)', 'CCL2(362)', ...
+                           'NH3(2)', 'HCL(293)'}, 0.1);
     X_CCL4 = [X_CCL4, output(3, end)];
     X_CCL3 = [X_CCL3, output(4, end)];
     X_CCL2 = [X_CCL2, output(5, end)];
-    X_CH4 = [X_CH4, output(6, end)];
+    X_NH3 = [X_NH3, output(6, end)];
     X_HCL = [X_HCL, output(7, end)];
-end
-
-T_array2 = linspace(800, 2000, 25);
-X0 = zeros(1, g.nSpecies);
-X0(g.speciesIndex('NH3(2)')) = 1.00;
-
-X_NH3 = [];
-
-for i = 1:length(T_array2)
-    fprintf('Solving for temperature = %d\n', T_array2(i));
-    g.TPX = {T_array2(i), P0, X0};
-    output = Plug_Flow(g, {'NH3(2)', 'H2(3)', 'NH2(10)'}, 1.0);
-    X_NH3 = [X_NH3, output(3, end)];
-    X_H2 = [X_H2, output(4, end)];
-    X_NH2 = [X_NH2, output(5, end)];
-    HH = g.enthalpies_RT.*1.9872.*g.T;
 end
 
 disp(['CPU time = ' num2str(cputime - t0)]);
 
 %% Plot the results
-figure(2)
-subplot(1, 2, 1);
+figure(1)
 hold on
 plot(T_array1, X_CCL4, 'k');
 plot(T_array1, X_CCL3, 'r');
 plot(T_array1, X_CCL2, 'g');
-plot(T_array1, X_CH4, 'bo')
+plot(T_array1, X_NH3, 'bo')
 plot(T_array1, X_HCL, 'b');
 legend('CCl4', 'CCl3', 'CCl2', 'CH4', 'HCl');
-xlabel('Temperature (K)');
-ylabel('Mole Fraction');
-axis square
-
-subplot(1, 2, 2);
-hold on
-plot(T_array2, X_NH3, 'k');
-plot(T_array2, X_H2, 'r');
-plot(T_array2, X_NH2, 'g');
-legend('NH3', 'H2', 'NH2');
 xlabel('Temperature (K)');
 ylabel('Mole Fraction');
 axis square
@@ -110,7 +82,7 @@ t0 = cputime;
 T_array3 = [1125, 1325];
 P0 = 2.0 * 133.32;
 X0 = 'CCl4(1):0.1,NH3(2):0.9';
-speciesList = {'CCl4(1)', 'NH3(2)', 'HCl(238)'}; 
+speciesList = {'CCl4(1)', 'NH3(2)', 'HCL(293)'}; 
 
 figure(3)
 

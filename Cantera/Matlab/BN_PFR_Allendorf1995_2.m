@@ -23,7 +23,7 @@ dx = 0.001; % Step size
 
 % Create the gas phase object
 
-fname = '/home/ssun30/Work/Boron_Nitride/YAML_Files/BNHCL-Allendorf1997_NASA7.yaml';
+fname = '/home/ssun30/Work/Boron_Nitride/YAML_Files/BNHCL_Allendorf_NASA7.yaml';
 phasename = 'gas';
 
 g = Solution(fname, phasename);
@@ -107,7 +107,7 @@ end
 
 t0 = cputime;
 
-T_array3 = [1125, 1325];
+T_array3 = [1125];
 P0 = 2.0 * 133.32;
 X0 = 'BCl3:0.4,NH3:0.6';
 speciesList = {'BCl3', 'NH3', 'Cl2BNH2', 'ClB(NH2)2', 'B(NH2)3', 'ClBNH', 'HCl'}; 
@@ -141,5 +141,8 @@ for i = 1:length(T_array3)
     ylabel('Mole Fraction');
     axis square
 end
+
+figure(3)
+plot(tim, output(2, 1:end));
 
 disp(['CPU time = ' num2str(cputime - t0)]);

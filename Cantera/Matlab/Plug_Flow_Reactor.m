@@ -17,7 +17,7 @@ function output = Plug_Flow_Reactor(gas_calc, species_name, residence_time, dx)
 
     % Inlet Area, in m^2
     A_in = 0.064 * 0.064 * pi / 4;
-    % Volumetric flow rate into the reactor, in m^3
+    % Volumetric flow rate into the reactor, in m^3/s
     VFR = 2000e-6; % 2000 sccm
     % Mass flow velocity into the reactor, in m/s
     v = VFR / A_in;
@@ -57,13 +57,14 @@ function output = Plug_Flow_Reactor(gas_calc, species_name, residence_time, dx)
         inlet_soln(3: nsp+2) = Y_calc(i-1, :);
         limits = [x_calc(i-1), x_calc(i)];
         gas_calc.TDY = {T_calc(i-1), rho_calc(i-1), Y_calc(i-1, :)};
-        options = odeset('RelTol', 1.e-10, 'AbsTol', 1e-10,...
-                        'InitialStep', 1e-8, 'NonNegative', 1);
+        options = odeset('RelTol', 1.e-8, 'AbsTol', 1e-10,...
+                        'InitialStep', 1e-16);
     %--------------------------------------------------------------------------
     %--------------------------------------------------------------------------
         % These values are passed onto the ode15s solver
+
         [~,y] = ode15s(@PFR_solver, limits, inlet_soln, options, ...
-                        gas_calc, mdot_calc, A_in, dAdx, k);
+                      gas_calc, mdot_calc, A_in, dAdx, k);
 
         T_calc = [T_calc, y(end, 2)];
         rho_calc = [rho_calc, y(end, 1)];
