@@ -1,10 +1,23 @@
 # Data sources
 database(
     thermoLibraries = ['primaryThermoLibrary','DFT_QCI_thermo','CHOCl_G4','CHON_G4','BoronAllendorf', 'CH','CHN','CHO','CHON','CN','NISTThermoLibrary','thermo_DFT_CCSDTF12_BAC','GRI-Mech3.0-N'],
-    reactionLibraries = ['Nitrogen_Dean_and_Bozzelli', 'NOx2018', 'CF2BrCl'], 
+    reactionLibraries = ['Nitrogen_Dean_and_Bozzelli', 'NOx2018'],
     seedMechanisms = ['BoronAllendorf'],
-    kineticsDepositories = ['training'], 
-    kineticsFamilies = ['default','halogens'],
+    kineticsDepositories = ['training'],
+    kineticsFamilies = ['halogens',
+                        # 'intra_H_migration',
+                        # 'intra_NO2_ONO_conversion',
+                        # 'intra_OH_migration',
+                        # 'intra_substitutionCS_cyclization',
+                        # 'intra_substitutionCS_isomerization',
+                        # 'intra_substitutionS_cyclization',
+                        # 'intra_substitutionS_isomerization',
+                        # 'H_Abstraction',
+                        # 'intra_H_migration',
+                        # '1,2_NH3_elimination',
+                        # '1,3_NH3_elimination',
+                        # 'Retroene',
+                        'default'],
     kineticsEstimator = 'rate rules',
 )
 
@@ -12,12 +25,9 @@ database(
 generatedSpeciesConstraints(
     allowed = ['input species', 'seed mechanisms', 'reaction libraries'],
     #maximumCarbonAtoms = 4,
-    maximumBoronAtoms = 6,
-    maximumNitrogenAtoms = 6,
-    #maximumSiliconAtoms = 0,
-    #maximumSulfurAtoms = 0,
-    #maximumHeavyAtoms = 3,
-    maximumRadicalElectrons = 2,
+    maximumBoronAtoms = 4,
+    maximumNitrogenAtoms = 4,
+    # maximumRadicalElectrons = 1,
     allowSingletO2 = False,
 )
 
@@ -103,16 +113,16 @@ forbidden(
 # Reaction systems
 simpleReactor(
     temperature=(1073,'K'),
-    pressure=(0.1,'bar'),
+    pressure=(0.01,'bar'),
     initialMoleFractions={
         "BCl3": 0.05,
         "NH3": 0.15,
         "H2": 0.8,
     },
-    terminationConversion={
-        'NH3': 0.9,
-    },
-    terminationTime=(1e1,'s'),
+    # terminationConversion={
+    #     'NH3': 0.9,
+    # },
+    terminationTime=(1.0e1,'s'),
 )
 
 simulator(
@@ -122,20 +132,10 @@ simulator(
 
 model(
     toleranceKeepInEdge=0.0,
-    toleranceMoveToCore=0.01,
-    toleranceInterruptSimulation=0.1,
-    maximumEdgeSpecies=50000
+    toleranceMoveToCore=1e-3,
+    toleranceInterruptSimulation=1e3,
+    maximumEdgeSpecies=10000
 )
-
-
-# quantumMechanics(
-#     software='mopac',
-#     method='pm3',
-#     # fileStore='QMfiles', # relative to where it is run. Defaults within the output folder.
-#     scratchDirectory = None, # not currently used
-#     onlyCyclics = True,
-#     maxRadicalNumber = 0,
-#     )
 
 # pressureDependence(
 #     method='modified strong collision',
